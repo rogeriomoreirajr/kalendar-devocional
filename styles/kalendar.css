@@ -30,10 +30,19 @@
   --c-pentecostes: #a62c2b;
   --c-tempo-comum: #2d6a4f;
 
+  /* Cabeçalho neutro (carvão quente): a cor da estação fica só na barra do ano e nos elementos de baixo */
+  --carvao: #2b2625;
+  --carvao-fundo: #1b1817;
+
+  /* Topo (barra do ano + cabeçalho). Tela do dia: cor profunda da estação, com vão num tom mais escuro.
+     Caderneta e Ajustes (data-fundo="neutro"): carvão neutro. */
+  --topo: var(--deep);
+  --topo-vao: var(--carvao-fundo);
+
   --bg: var(--tint);
   --page: var(--surface);
   --rule: var(--line);
-  --band: var(--deep);
+  --band: var(--topo);
   --on-band: var(--on-deep);
 
   --serif: "Libre Baskerville", "Baskerville", "Iowan Old Style", Georgia, serif;
@@ -55,6 +64,8 @@
   --c-pascoa: #e0b457;
   --c-pentecostes: #f08a88;
   --c-tempo-comum: #78c9a4;
+  --carvao: #3a352f;
+  --carvao-fundo: #26231f;
   color-scheme: dark;
 }
 
@@ -73,6 +84,21 @@
 :root[data-theme="dark"][data-estacao="pascoa"]      { --accent: #e0b457; --deep: #54401a; --tint: #2b2312; --line: #4d3f20; }
 :root[data-theme="dark"][data-estacao="pentecostes"] { --accent: #f08a88; --deep: #5b2020; --tint: #2e1717; --line: #512c2c; }
 :root[data-theme="dark"][data-estacao="tempo-comum"] { --accent: #78c9a4; --deep: #1f4d38; --tint: #15251e; --line: #28443a; }
+
+/* Vão da barra do ano na tela do dia: a cor profunda da estação, 40% mais escura */
+@supports (color: color-mix(in srgb, red, blue)) {
+  :root { --topo-vao: color-mix(in srgb, var(--deep) 60%, #000); }
+}
+
+/* Telas que cobrem o ano todo (Caderneta, Ajustes): topo em carvão e fundo cinza, sem tinta de estação */
+:root[data-fundo="neutro"] {
+  --topo: var(--carvao);
+  --topo-vao: var(--carvao-fundo);
+  --tint: #eeeeec;
+  --line: #d9d9d6;
+}
+
+:root[data-theme="dark"][data-fundo="neutro"] { --tint: #1f1f1f; --line: #333333; }
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -106,18 +132,17 @@ a { color: inherit; }
 .barra-ano {
   display: flex;
   align-items: flex-start;
+  gap: 2px;
   height: 11px;
+  background: var(--topo-vao);
 }
 
 .ano__seg {
   flex-basis: 0;
   min-width: 0;
-  height: 8px;
-  margin-right: 2px;
+  height: 9px;
   opacity: 0.72;
 }
-
-.ano__seg:last-child { margin-right: 0; }
 
 .ano__seg--advento { background: var(--c-advento); }
 .ano__seg--natal { background: var(--c-natal); }
@@ -126,13 +151,15 @@ a { color: inherit; }
 .ano__seg--pentecostes { background: var(--c-pentecostes); }
 .ano__seg--tempo-comum { background: var(--c-tempo-comum); }
 
-/* Estação de hoje: mesma cor do cabeçalho, desce e toca nele */
-.ano__seg--atual { height: 11px; opacity: 1; background: var(--deep); }
+/* Estação de hoje: cor cheia e mais alta (a "aba" que encosta no cabeçalho). Na tela do dia,
+   usa a cor do cabeçalho, então as duas se fundem; no carvão neutro, fica na cor da estação. */
+.ano__seg--atual { height: 11px; opacity: 1; }
+:root[data-fundo="estacao"] .ano__seg--atual { background: var(--deep); }
 
-/* ---------- Cabeçalho em cor ---------- */
+/* ---------- Cabeçalho (cor profunda da estação no dia; carvão nas outras telas) ---------- */
 
 .cabeca {
-  background: var(--deep);
+  background: var(--topo);
   color: var(--on-deep);
 }
 
@@ -252,16 +279,16 @@ button.botao-icone {
 
 .botao-contorno:hover { border-color: var(--accent); color: var(--accent); }
 
-/* Botão principal: cor profunda da estação */
+/* Botão principal: cor da estação */
 .botao-solido {
   font-family: var(--sans);
   font-weight: 600;
   font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--on-deep);
-  background: var(--deep);
-  border: 1px solid var(--deep);
+  color: var(--on-accent);
+  background: var(--accent);
+  border: 1px solid var(--accent);
   padding: 0 22px;
   min-height: 48px;
   display: inline-flex;
@@ -274,7 +301,6 @@ button.botao-icone {
 
 .botao-solido:hover { filter: brightness(1.15); }
 
-:root[data-theme="dark"] .botao-solido { border-color: var(--accent); }
 
 .cabeca__linha {
   display: flex;
@@ -366,7 +392,7 @@ button.botao-icone {
 .caixa--feito .caixa__disco {
   background: var(--on-deep);
   border-color: var(--on-deep);
-  color: var(--deep);
+  color: var(--topo);
 }
 
 .caixa:hover .caixa__disco { border-color: var(--on-deep); }
@@ -754,13 +780,23 @@ button.botao-icone {
   color: var(--muted);
 }
 
-.cad-semana { margin-bottom: 10px; }
+/* Cada estação tem a sua cor (--cor, definida por dia/semana); sem ela, vale a da estação de hoje */
+
+.cad-semana { margin-bottom: 10px; --cor: var(--accent); }
+
+/* Faixa fina no alto da semana: uma cor por dia (a semana que muda de estação mostra a virada) */
+.cad-faixa {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.cad-faixa span { height: 3px; background: var(--cor); opacity: 0.85; }
 
 .cad-semana__titulo {
   display: flex;
   justify-content: space-between;
   gap: 8px;
-  border-top: 1px solid var(--line);
   padding-top: 6px;
   margin-bottom: 2px;
   font-family: var(--sans);
@@ -770,6 +806,8 @@ button.botao-icone {
   text-transform: uppercase;
   color: var(--muted);
 }
+
+.cad-semana__titulo i { color: var(--cor); }
 
 .cad-semana__titulo i {
   font-family: var(--serif);
@@ -798,18 +836,22 @@ button.botao-icone {
   width: 24px;
   height: 24px;
   border: 1.5px solid var(--muted);
+  border: 1.5px solid color-mix(in srgb, var(--cor, var(--accent)) 50%, transparent);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .cad-dia--futuro { color: var(--line); }
-.cad-dia--futuro .cad-dia__quadro { border-color: var(--line); }
+.cad-dia--futuro .cad-dia__quadro {
+  border-color: var(--line);
+  border-color: color-mix(in srgb, var(--cor, var(--accent)) 24%, transparent);
+}
 
 .cad-dia--hoje { color: var(--ink); }
 .cad-dia--hoje .cad-dia__quadro { border: 3px double var(--ink); }
 
-.cad-dia--feito .cad-dia__quadro { background: var(--accent); border-color: var(--accent); }
+.cad-dia--feito .cad-dia__quadro { background: var(--cor, var(--accent)); border-color: var(--cor, var(--accent)); }
 .cad-dia .caixa__marca { display: none; }
 .cad-dia--feito .caixa__marca { display: block; }
 
@@ -898,7 +940,7 @@ a.ref:hover { color: var(--accent); border-bottom-style: solid; }
   left: 50%;
   bottom: 24px;
   transform: translateX(-50%);
-  background: var(--deep);
+  background: var(--topo);
   color: var(--on-deep);
   font-family: var(--sans);
   font-size: 12px;

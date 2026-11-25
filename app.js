@@ -451,10 +451,25 @@
     corDaBarraDoSistema();
   }
 
-  // Cor da barra de status do celular = tinta do papel da estação.
+  function paraHex(cor) {
+    var v;
+    var m = String(cor).match(/rgba?\(([^)]+)\)/);
+    if (m) {
+      v = m[1].split(",").slice(0, 3).map(Number);
+    } else {
+      m = String(cor).match(/color\(srgb ([^)]+)\)/);
+      if (!m) return null;
+      v = m[1].trim().split(/\s+/).slice(0, 3).map(function (x) { return Math.round(parseFloat(x) * 255); });
+    }
+    return "#" + v.map(function (n) { return ("0" + Math.max(0, Math.min(255, n)).toString(16)).slice(-2); }).join("");
+  }
+
+  // Cor da barra de status do celular = vão escuro da barra do ano (o topo da página).
   function corDaBarraDoSistema() {
     var meta = document.querySelector('meta[name="theme-color"]');
-    var v = getComputedStyle(document.documentElement).getPropertyValue("--tint").trim();
+    var barra = document.getElementById("barra-ano");
+    // lê a cor já calculada (o vão pode vir de color-mix) e a converte para #rrggbb, que o meta aceita
+    var v = barra ? paraHex(getComputedStyle(barra).backgroundColor) : null;
     if (meta && v) meta.setAttribute("content", v);
   }
 
@@ -475,6 +490,12 @@
       }
     });
     return segmentosAno;
+  }
+
+  // Cor (nome da estação no CSS) de um dia do ciclo
+  function corDaEstacao(iso) {
+    var e = porData[iso];
+    return (e && e.estacao_css) || "advento";
   }
 
   function barraAno(iso) {
@@ -562,15 +583,20 @@
       var e1 = porData[fim];
       var est = e0 && e1 && e0.estacao !== e1.estacao ? e0.estacao + " · " + e1.estacao : (e0 && e0.estacao) || "";
       var dias = "";
+      var faixa = "";
       for (var i = 0; i < 7; i++) {
         var d = somaDias(ini, i);
+        var cor = "var(--c-" + corDaEstacao(d) + ")"; // cada dia na cor da própria estação
         var cls = "cad-dia" + (d > hoje ? " cad-dia--futuro" : "") + (d === hoje ? " cad-dia--hoje" : "") + (diaFeito(d) ? " cad-dia--feito" : "");
-        dias += '<a class="' + cls + '" data-iso="' + d + '" href="#/dia/' + d + '" aria-label="' + esc(dataExtenso(d)) + '">' +
+        dias += '<a class="' + cls + '" style="--cor:' + cor + '" data-iso="' + d + '" href="#/dia/' + d + '" aria-label="' + esc(dataExtenso(d)) + '">' +
           "<span>" + +d.slice(8) + '</span><span class="cad-dia__quadro">' + MARCA + "</span></a>";
+        faixa += '<span style="--cor:' + cor + '"></span>';
       }
-      semanas += '<div class="cad-semana"><div class="cad-semana__titulo"><span>' + esc(intervalo(ini, fim)) + "</span><i>" + esc(est) +
+      semanas += '<div class="cad-semana" style="--cor:var(--c-' + corDaEstacao(ini) + ')"><div class="cad-faixa" aria-hidden="true">' + faixa + "</div>" +
+        '<div class="cad-semana__titulo"><span>' + esc(intervalo(ini, fim)) + "</span><i>" + esc(est) +
         '</i></div><div class="cad-dias">' + dias + "</div></div>";
     }
+
 
     var cab = ORDEM_SEMANA.map(function (k) { return "<span>" + SIGLAS[k] + "</span>"; }).join("");
     barraAno(limitar(hoje));
@@ -699,6 +725,8 @@
 
   function renderizar() {
     var r = rotaAtual();
+    // Dia: papel tingido pela estação. Caderneta e Ajustes (o ano todo): fundo cinza neutro.
+    document.documentElement.setAttribute("data-fundo", r.tela === "dia" ? "estacao" : "neutro");
     if (r.tela === "caderneta") telaCaderneta();
     else if (r.tela === "ajustes") telaAjustes();
     else telaDia(r.iso);
