@@ -937,8 +937,29 @@
   // A rolagem da faixa é nativa (com impulso e encaixe na quinta). Aqui só mantemos as setas do desktop em dia
   // e o alinhamento quando a tela muda de largura (por exemplo, ao girar o celular).
   document.addEventListener("scroll", function (ev) {
-    if (ev.target && ev.target.id === "faixa-semanas") atualizarSetasFaixa();
+    if (!ev.target || ev.target.id !== "faixa-semanas") return;
+    atualizarSetasFaixa();
+    // Quando a faixa para numa semana diferente, abre o primeiro dia dela (a quinta).
+    // Usa "scrollend" quando existe; senão espera a rolagem ficar parada por um instante.
+    if ("onscrollend" in window) return;
+    clearTimeout(timerFaixa);
+    timerFaixa = setTimeout(abrirSemanaDaFaixa, 220);
   }, { capture: true, passive: true });
+
+  var timerFaixa = 0;
+
+  function abrirSemanaDaFaixa() {
+    var j = document.getElementById("faixa-semanas");
+    var rota = rotaAtual();
+    if (!j || rota.tela !== "dia" || !j.clientWidth) return;
+    var semana = Math.round(j.scrollLeft / j.clientWidth);
+    if (semana === Math.floor(difDias(CICLO_INI, rota.iso) / 7)) return;
+    irPara(somaDias(CICLO_INI, semana * 7));
+  }
+
+  document.addEventListener("scrollend", function (ev) {
+    if (ev.target && ev.target.id === "faixa-semanas") abrirSemanaDaFaixa();
+  }, true);
 
   window.addEventListener("resize", function () {
     var j = document.getElementById("faixa-semanas");
