@@ -46,6 +46,93 @@
   var MARCA =
     '<svg class="caixa__marca" width="12" height="12" viewBox="0 0 12 12" fill="none" style="stroke:var(--on-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6.5l2.7 2.7L10 3.2"/></svg>';
 
+  // ------------------------------------------------------------------ links para a Bíblia
+
+  // Versões em português: id no YouVersion (bible.com) e nome. No Bíblia Online a sigla minúscula é o endereço.
+  var VERSOES = {
+    a21: { nome: "Almeida Século 21 (A21)", yv: 2645 },
+    ara: { nome: "Almeida Revista e Atualizada (ARA)", yv: 1608 },
+    arc: { nome: "Almeida Revista e Corrigida (ARC)", yv: 212 },
+    naa: { nome: "Nova Almeida Atualizada (NAA)", yv: 1840 },
+    nvi: { nome: "Nova Versão Internacional (NVI)", yv: 129 },
+    nvt: { nome: "Nova Versão Transformadora (NVT)", yv: 1930 },
+    ntlh: { nome: "Nova Tradução na Linguagem de Hoje (NTLH)", yv: 211 },
+    acf: { nome: "Almeida Corrigida Fiel (ACF)", yv: null } // só no Bíblia Online
+  };
+
+  var DESTINOS = {
+    youversion: { nome: "YouVersion (app ou site)", versoes: ["a21", "ara", "arc", "naa", "nvi", "nvt", "ntlh"] },
+    bibliaonline: { nome: "Bíblia Online (site)", versoes: ["a21", "ara", "arc", "naa", "nvi", "nvt", "ntlh", "acf"] },
+    nenhum: { nome: "Não abrir links (só o texto)", versoes: [] }
+  };
+
+  var CONFIG_PADRAO = { destino: "youversion", versao: "a21" };
+
+  // [nome, código YouVersion, endereço no Bíblia Online]
+  var LIVROS_LISTA = [
+    ["Gênesis", "GEN", "gn"], ["Êxodo", "EXO", "ex"], ["Levítico", "LEV", "lv"], ["Números", "NUM", "nm"],
+    ["Deuteronômio", "DEU", "dt"], ["Josué", "JOS", "js"], ["Juízes", "JDG", "jz"], ["Rute", "RUT", "rt"],
+    ["1 Samuel", "1SA", "1sm"], ["2 Samuel", "2SA", "2sm"], ["1 Reis", "1KI", "1rs"], ["2 Reis", "2KI", "2rs"],
+    ["1 Crônicas", "1CH", "1cr"], ["2 Crônicas", "2CH", "2cr"], ["Esdras", "EZR", "ed"], ["Neemias", "NEH", "ne"],
+    ["Ester", "EST", "et"], ["Jó", "JOB", "jó"], ["Salmo", "PSA", "sl"], ["Salmos", "PSA", "sl"],
+    ["Provérbios", "PRO", "pv"], ["Eclesiastes", "ECC", "ec"], ["Cantares", "SNG", "ct"], ["Isaías", "ISA", "is"],
+    ["Jeremias", "JER", "jr"], ["Lamentações", "LAM", "lm"], ["Ezequiel", "EZK", "ez"], ["Daniel", "DAN", "dn"],
+    ["Oseias", "HOS", "os"], ["Joel", "JOL", "jl"], ["Amós", "AMO", "am"], ["Obadias", "OBA", "ob"],
+    ["Jonas", "JON", "jn"], ["Miqueias", "MIC", "mq"], ["Naum", "NAM", "na"], ["Habacuque", "HAB", "hc"],
+    ["Sofonias", "ZEP", "sf"], ["Ageu", "HAG", "ag"], ["Zacarias", "ZEC", "zc"], ["Malaquias", "MAL", "ml"],
+    ["Mateus", "MAT", "mt"], ["Marcos", "MRK", "mc"], ["Lucas", "LUK", "lc"], ["João", "JHN", "jo"],
+    ["Atos", "ACT", "atos"], ["Romanos", "ROM", "rm"], ["1 Coríntios", "1CO", "1co"], ["2 Coríntios", "2CO", "2co"],
+    ["Gálatas", "GAL", "gl"], ["Efésios", "EPH", "ef"], ["Filipenses", "PHP", "fp"], ["Colossenses", "COL", "cl"],
+    ["1 Tessalonicenses", "1TH", "1ts"], ["2 Tessalonicenses", "2TH", "2ts"], ["1 Timóteo", "1TI", "1tm"],
+    ["2 Timóteo", "2TI", "2tm"], ["Tito", "TIT", "tt"], ["Filemom", "PHM", "fm"], ["Hebreus", "HEB", "hb"],
+    ["Tiago", "JAS", "tg"], ["1 Pedro", "1PE", "1pe"], ["2 Pedro", "2PE", "2pe"], ["1 João", "1JN", "1jo"],
+    ["2 João", "2JN", "2jo"], ["3 João", "3JN", "3jo"], ["Judas", "JUD", "jd"], ["Apocalipse", "REV", "ap"]
+  ];
+
+  function semAcentos(s) { return String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/\s+/g, " ").trim(); }
+
+  var LIVROS = {};
+  LIVROS_LISTA.forEach(function (l) { LIVROS[semAcentos(l[0])] = l; });
+  LIVROS["oseas"] = LIVROS["oseias"];
+  LIVROS["miquéias"] = LIVROS["miqueias"];
+  LIVROS["cantico dos canticos"] = LIVROS["cantares"];
+
+  // Configuração válida (corrige valores antigos ou inexistentes).
+  function config() {
+    var c = store.config || {};
+    var destino = DESTINOS[c.destino] ? c.destino : CONFIG_PADRAO.destino;
+    var versao = DESTINOS[destino].versoes.indexOf(c.versao) !== -1 ? c.versao : CONFIG_PADRAO.versao;
+    return { destino: destino, versao: versao };
+  }
+
+  function urlLeitura(livro, cap) {
+    var c = config();
+    var l = LIVROS[semAcentos(livro)];
+    if (c.destino === "nenhum" || !l) return null;
+    if (c.destino === "bibliaonline") {
+      return "https://www.bibliaonline.com.br/" + c.versao + "/" + encodeURIComponent(l[2]) + "/" + cap;
+    }
+    return "https://www.bible.com/bible/" + VERSOES[c.versao].yv + "/" + l[1] + "." + cap + "." + c.versao.toUpperCase();
+  }
+
+  // Referência → HTML com link para o capítulo. "Isaías 9:1–7; 11:1–10" vira dois links (o 2º herda o livro).
+  function refHtml(ref) {
+    var livro = null;
+    var c = config();
+    return String(ref).split(";").map(function (parte) {
+      var p = parte.trim();
+      var m = p.match(/^((?:[1-3]\s)?[A-Za-zÀ-ÿ]+(?:\s[A-Za-zÀ-ÿ]+)*?)\s+(\d+)/);
+      var cap;
+      if (m && LIVROS[semAcentos(m[1])]) { livro = m[1]; cap = m[2]; }
+      else if (livro && /^\d+/.test(p)) { cap = p.match(/^\d+/)[0]; }
+      else return esc(p);
+      var url = urlLeitura(livro, cap);
+      if (!url) return esc(p);
+      return '<a class="ref" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer" title="' +
+        esc("Abrir o capítulo (" + c.versao.toUpperCase() + ", " + (c.destino === "bibliaonline" ? "Bíblia Online" : "YouVersion") + ")") + '">' + esc(p) + "</a>";
+    }).join("; ");
+  }
+
   // ------------------------------------------------------------------ utilidades
 
   function esc(t) {
@@ -99,7 +186,7 @@
 
   // ------------------------------------------------------------------ armazenamento
 
-  var store = { lidos: {}, tema: null };
+  var store = { lidos: {}, tema: null, config: {} };
   var memoria = false;
 
   function carregar() {
@@ -110,6 +197,7 @@
         if (d && typeof d === "object") {
           store.lidos = d.lidos && typeof d.lidos === "object" ? d.lidos : {};
           store.tema = d.tema === "claro" || d.tema === "escuro" ? d.tema : null;
+          store.config = d.config && typeof d.config === "object" ? d.config : {};
         }
       }
     } catch (e) { memoria = true; }
@@ -203,7 +291,7 @@
   function itemHtml(iso, it, idx, compacto) {
     return '<div class="item' + (compacto ? " item--compacto" : "") + '">' +
       '<span class="item__icone">' + ICONES[it.icone] + "</span>" +
-      '<span class="item__texto"><span class="item__rotulo">' + esc(it.rotulo) + '</span> <span class="item__ref">' + esc(it.ref) + "</span></span>" +
+      '<span class="item__texto"><span class="item__rotulo">' + esc(it.rotulo) + '</span> <span class="item__ref">' + refHtml(it.ref) + "</span></span>" +
       checkHtml(iso, idx, it.rotulo, it.ref) + "</div>";
   }
 
@@ -226,7 +314,7 @@
         if (l.ref || !prox || (l.comunidade && !prox.comunidade)) cls += " linha--fim";
       }
       return '<div class="' + cls + '"><p class="linha__texto">' + corpoLinha(l) + "</p>" +
-        (l.ref ? '<span class="linha__ref">' + esc(l.ref) + "</span>" : "") + "</div>";
+        (l.ref ? '<span class="linha__ref">' + refHtml(l.ref) + "</span>" : "") + "</div>";
     }).join("");
   }
 
@@ -384,13 +472,61 @@
       '<div class="cad-resumo"><p id="cad-resumo-1"></p><p>Os outros dias continuam abertos para você, quando quiser voltar a eles.</p></div>' +
       '<div class="cad-acoes">' +
       '<a class="botao-contorno" id="btn-continuar" href="#/">Continuar de onde parei</a>' +
-      '<button type="button" class="botao-texto botao-texto--suave" data-act="exportar">Exportar marcações</button>' +
-      '<label class="botao-texto botao-texto--suave" for="arq-importar" style="cursor:pointer">Importar marcações</label>' +
-      '<input type="file" id="arq-importar" accept="application/json,.json" class="sr-only" />' +
-      '<button type="button" class="botao-texto botao-texto--suave" data-act="limpar">Limpar marcações deste aparelho</button>' +
       "</div></article></div>";
     window.scrollTo(0, 0);
     atualizarMarcas();
+  }
+
+  function opcoesVersao(destino, atual) {
+    return DESTINOS[destino].versoes.map(function (k) {
+      return '<option value="' + k + '"' + (k === atual ? " selected" : "") + ">" + esc(VERSOES[k].nome) + "</option>";
+    }).join("");
+  }
+
+  function telaAjustes() {
+    definirEstacao(porData[limitar(hojeReal())]);
+    document.title = "Ajustes · Kalendar Devocional";
+    var c = config();
+    var destinos = Object.keys(DESTINOS).map(function (k) {
+      return '<label class="opcao"><input type="radio" name="destino" value="' + k + '"' + (c.destino === k ? " checked" : "") +
+        "><span>" + esc(DESTINOS[k].nome) + "</span></label>";
+    }).join("");
+    var tema = store.tema || "auto";
+    var temas = [["auto", "Automático (como o aparelho)"], ["claro", "Claro"], ["escuro", "Escuro"]].map(function (t) {
+      return '<option value="' + t[0] + '"' + (tema === t[0] ? " selected" : "") + ">" + t[1] + "</option>";
+    }).join("");
+
+    app.innerHTML =
+      '<div class="caderneta"><article class="pagina caderneta__pagina">' +
+      '<h1 class="titulo-livro">Ajustes</h1>' +
+      '<p class="caderneta__sub">Do seu jeito, no seu ritmo.</p>' +
+
+      '<section class="ajuste" aria-labelledby="aj-links">' +
+      '<div class="secao__rotulo"><h2 class="secao__titulo" id="aj-links">Abrir as leituras em</h2></div>' +
+      '<div class="opcoes" role="radiogroup" aria-labelledby="aj-links">' + destinos + "</div>" +
+      '<label class="ajuste__rotulo" for="sel-versao">Versão da Bíblia</label>' +
+      '<select class="ajuste__campo" id="sel-versao"' + (c.destino === "nenhum" ? " disabled" : "") + ">" + opcoesVersao(c.destino === "nenhum" ? "youversion" : c.destino, c.versao) + "</select>" +
+      '<p class="nota">Ao tocar numa referência (por exemplo, Mateus 11:2–10), abre o capítulo em outra aba. ' +
+      "Com o app do YouVersion instalado, o celular costuma abri-lo direto.</p>" +
+      "</section>" +
+
+      '<section class="ajuste" aria-labelledby="aj-tema">' +
+      '<div class="secao__rotulo"><h2 class="secao__titulo" id="aj-tema">Aparência</h2></div>' +
+      '<label class="ajuste__rotulo" for="sel-tema">Tema</label>' +
+      '<select class="ajuste__campo" id="sel-tema">' + temas + "</select>" +
+      "</section>" +
+
+      '<section class="ajuste" aria-labelledby="aj-marcas">' +
+      '<div class="secao__rotulo"><h2 class="secao__titulo" id="aj-marcas">Suas marcações</h2></div>' +
+      '<p class="nota">Ficam guardadas só neste aparelho. Para levar do computador ao celular, exporte aqui e importe no outro.</p>' +
+      '<div class="cad-acoes">' +
+      '<button type="button" class="botao-contorno" data-act="exportar">Exportar marcações</button>' +
+      '<label class="botao-contorno" for="arq-importar" style="cursor:pointer">Importar marcações</label>' +
+      '<input type="file" id="arq-importar" accept="application/json,.json" class="sr-only" />' +
+      '<button type="button" class="botao-texto botao-texto--suave" data-act="limpar">Limpar marcações deste aparelho</button>' +
+      "</div></section>" +
+      "</article></div>";
+    window.scrollTo(0, 0);
   }
 
   // ------------------------------------------------------------------ atualização das marcas
@@ -446,6 +582,7 @@
   function rotaAtual() {
     var h = location.hash || "#/";
     if (h.indexOf("#/caderneta") === 0) return { tela: "caderneta" };
+    if (h.indexOf("#/ajustes") === 0) return { tela: "ajustes" };
     var m = h.match(/^#\/dia\/(\d{4}-\d{2}-\d{2})$/);
     var iso = limitar(m ? m[1] : hojeReal());
     return { tela: "dia", iso: iso };
@@ -453,7 +590,9 @@
 
   function renderizar() {
     var r = rotaAtual();
-    if (r.tela === "caderneta") telaCaderneta(); else telaDia(r.iso);
+    if (r.tela === "caderneta") telaCaderneta();
+    else if (r.tela === "ajustes") telaAjustes();
+    else telaDia(r.iso);
   }
 
   function irPara(iso) { location.hash = "#/dia/" + limitar(iso); }
@@ -554,6 +693,25 @@
   document.addEventListener("change", function (ev) {
     var t = ev.target;
     if (t.id === "data-dia" && t.value) irPara(t.value);
+    if (t.name === "destino") {
+      store.config = { destino: t.value, versao: store.config && store.config.versao };
+      store.config.versao = config().versao;
+      salvar();
+      var sel = document.getElementById("sel-versao");
+      if (sel) {
+        sel.disabled = t.value === "nenhum";
+        sel.innerHTML = opcoesVersao(t.value === "nenhum" ? "youversion" : t.value, store.config.versao);
+      }
+    }
+    if (t.id === "sel-versao") {
+      store.config = { destino: config().destino, versao: t.value };
+      salvar();
+    }
+    if (t.id === "sel-tema") {
+      store.tema = t.value === "claro" || t.value === "escuro" ? t.value : null;
+      salvar();
+      aplicarTema(store.tema || (window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "escuro" : "claro"));
+    }
     if (t.id === "arq-importar" && t.files && t.files[0]) { importar(t.files[0]); t.value = ""; }
   });
 

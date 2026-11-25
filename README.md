@@ -5,7 +5,8 @@ App devocional em formato de **livro de ofícios**, a partir do *Kalendar — Pl
 - Abre no dia de hoje (ou em 26/11/2026, antes de o ciclo começar).
 - Marcação por leitura (A.T., Epístola, Evangelho, Salmo) e por dia; guardada **só no aparelho** (`localStorage`).
 - **Caderneta**: calendário dos 364 dias, com os dias com a Palavra preenchidos e os outros em branco, sem destaque de "atraso".
-- Exportar/importar as marcações (para passar do computador ao celular).
+- **Links para a Bíblia**: cada referência (ex.: Mateus 11:2–10) abre o capítulo no **YouVersion** ou no **Bíblia Online**, à escolha, em **Ajustes**, junto com a versão (A21, ARA, ARC, NAA, NVI, NVT, NTLH e, no Bíblia Online, ACF). Padrão: YouVersion, A21. Também dá para desligar os links.
+- Exportar/importar as marcações (para passar do computador ao celular), em **Ajustes**.
 - Tema claro/escuro, cor de acento pela estação litúrgica, funciona offline e instala na tela inicial (PWA).
 
 ## Estrutura
