@@ -487,11 +487,42 @@ a { color: inherit; }
 
 .semana__cabecalho {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 12px;
-  flex-wrap: wrap;
   margin-bottom: 8px;
+  min-height: 44px;
+  list-style: none;
+  cursor: pointer;
+}
+
+.semana__cabecalho::-webkit-details-marker { display: none; }
+
+.semana__lado { display: flex; align-items: center; gap: 14px; flex: 0 0 auto; }
+
+.semana__intervalo { white-space: nowrap; }
+
+@media (max-width: 480px) {
+  .semana__cabecalho .titulo-livro { font-size: 21px; letter-spacing: 0.14em; }
+  .semana__lado { gap: 10px; }
+}
+
+.semana__seta {
+  width: 9px;
+  height: 9px;
+  margin-top: -4px;
+  border-right: 1.5px solid var(--ink);
+  border-bottom: 1.5px solid var(--ink);
+  transform: rotate(45deg);
+  transition: transform 0.25s ease;
+}
+
+.semana-det[open] .semana__seta { transform: rotate(-135deg); margin-top: 4px; }
+
+/* No desktop o lecionário da semana fica sempre aberto */
+@media (min-width: 1000px) {
+  .semana__cabecalho { pointer-events: none; cursor: default; }
+  .semana__seta { display: none; }
 }
 
 .semana__intervalo {

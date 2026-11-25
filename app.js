@@ -386,10 +386,31 @@
         "<span>" + esc(nome) + '</span><span class="banda__data">' + esc(en.data) + "</span></a>" +
         itensDoDia(en).map(function (it, k) { return itemHtml(d, it, k, true); }).join("") + "</div>";
     }
-    return '<div class="semana__cabecalho"><h2 class="titulo-livro">Lecionário</h2>' +
-      '<span class="semana__intervalo">' + esc(curta(ini) + " a " + curta(fim > CICLO_FIM ? CICLO_FIM : fim)) + "</span></div>" +
+    // No celular fica recolhido (abre ao tocar); no desktop é sempre aberto (ver ajustarSemana).
+    return '<details class="semana-det" id="semana-det"><summary class="semana__cabecalho">' +
+      '<h2 class="titulo-livro">Lecionário</h2>' +
+      '<span class="semana__lado"><span class="semana__intervalo">' + esc(curta(ini) + " a " + curta(fim > CICLO_FIM ? CICLO_FIM : fim)) +
+      '</span><span class="semana__seta" aria-hidden="true"></span></span></summary>' +
       '<p class="semana__sub">' + esc(e.estacao || "") + " · a semana de quinta a quarta</p>" + dias +
-      '<p class="semana__frase" id="frase-semana"></p>';
+      '<p class="semana__frase" id="frase-semana"></p></details>';
+  }
+
+  var mqLargo = window.matchMedia ? window.matchMedia("(min-width: 1000px)") : { matches: true };
+
+  function ajustarSemana() {
+    var det = document.getElementById("semana-det");
+    if (!det) return;
+    det.open = mqLargo.matches;
+    det.addEventListener("toggle", function () {
+      if (mqLargo.matches && !det.open) det.open = true; // no desktop não recolhe
+    });
+  }
+
+  if (mqLargo.addEventListener) {
+    mqLargo.addEventListener("change", function () {
+      var det = document.getElementById("semana-det");
+      if (det && mqLargo.matches) det.open = true;
+    });
   }
 
   // ------------------------------------------------------------------ telas
@@ -438,6 +459,7 @@
       "</div>";
 
     window.scrollTo(0, 0);
+    ajustarSemana();
     atualizarMarcas();
   }
 
