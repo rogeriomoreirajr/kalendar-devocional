@@ -1,0 +1,12 @@
+# PDFs de origem: são material com direitos autorais, não vão para o repositório
+*.pdf
+
+# Rascunhos e arquivos de apoio locais
+scripts/*(1).py
+data/debug_layout.txt
+*.ipynb
+.claude/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

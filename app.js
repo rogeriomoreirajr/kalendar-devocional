@@ -1,0 +1,593 @@
+/* Kalendar Devocional — app do livro de ofícios (sem dependências).
+ *
+ * Dados: JSON embutido no index.html (gerado por scripts/parse_kalendar.py).
+ * Marcações de leitura: ficam só neste aparelho (localStorage), nada é enviado a servidor.
+ * Rotas (hash): #/ (hoje) · #/dia/AAAA-MM-DD · #/caderneta
+ */
+(function () {
+  "use strict";
+
+  var CICLO_INI = "2026-11-26";
+  var CICLO_FIM = "2027-11-24";
+  var STORE_KEY = "kalendar.ano1.v1";
+
+  var DIA_POR_WEEKDAY = ["domingo", "segunda", "terca", "quarta", "quinta", "sexta", "sabado"]; // getUTCDay()
+  var NOMES_DIAS = {
+    quinta: "Quinta-feira", sexta: "Sexta-feira", sabado: "Sábado", domingo: "Domingo",
+    segunda: "Segunda-feira", terca: "Terça-feira", quarta: "Quarta-feira"
+  };
+  var SIGLAS = { quinta: "QUI", sexta: "SEX", sabado: "SÁB", domingo: "DOM", segunda: "SEG", terca: "TER", quarta: "QUA" };
+  var ORDEM_SEMANA = ["quinta", "sexta", "sabado", "domingo", "segunda", "terca", "quarta"];
+  var MESES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+  var MESES_ABREV = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
+
+  var TITULOS_SECAO = {
+    abertura: "Abertura",
+    invocacao: "Invocação",
+    confissao: "Confissão de pecado e súplica pelo perdão",
+    leitura: "Leitura · Lecionário",
+    gloria: "Glória Patri",
+    aclamacao: "Aclamação",
+    cantico_louvor: "Cântico de louvor",
+    benedictus: "Benedictus",
+    oracao_do_senhor: "Oração do Senhor",
+    suplica: "Súplica diurna",
+    oracoes_intercessao: "Orações do coração e intercessão",
+    coleta: "Coleta"
+  };
+  var SECOES_PARAGRAFO = { confissao: true, coleta: true };
+  var SECOES_OMITIDAS = { silencio_reflexao: true, salmo: true }; // entram no bloco "Leitura"
+
+  var ICONES = {
+    at: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 5.5c2.8-1.2 5.5-1.1 8.5.5 3-1.6 5.7-1.7 8.5-.5V18c-2.8-1.2-5.5-1.1-8.5.5-3-1.6-5.7-1.7-8.5-.5z"/><path d="M12 6v12.5"/></svg>',
+    nt: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12c3.2-4.8 7.5-5.8 11.5-3.6 1.8 1 3.3 2.3 4.5 3.6-1.2 1.3-2.7 2.6-4.5 3.6-4 2.2-8.3 1.2-11.5-3.6z"/><path d="M18.5 12l3-3M18.5 12l3 3"/></svg>',
+    sl: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4c5.5 0 9.5 2.2 9.5 7.5V20"/><path d="M7 4v12.5C7 18.6 8.5 20 10.5 20h6"/><path d="M10.5 8v9M13.5 9.5V17"/></svg>'
+  };
+  var MARCA =
+    '<svg class="caixa__marca" width="12" height="12" viewBox="0 0 12 12" fill="none" style="stroke:var(--on-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6.5l2.7 2.7L10 3.2"/></svg>';
+
+  // ------------------------------------------------------------------ utilidades
+
+  function esc(t) {
+    return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function paraMs(iso) {
+    var p = iso.split("-");
+    return Date.UTC(+p[0], +p[1] - 1, +p[2]);
+  }
+  function deMs(ms) {
+    var d = new Date(ms);
+    return d.getUTCFullYear() + "-" + String(d.getUTCMonth() + 1).padStart(2, "0") + "-" + String(d.getUTCDate()).padStart(2, "0");
+  }
+  function somaDias(iso, n) { return deMs(paraMs(iso) + n * 86400000); }
+  function difDias(a, b) { return Math.round((paraMs(b) - paraMs(a)) / 86400000); }
+  function diaDaSemana(iso) { return DIA_POR_WEEKDAY[new Date(paraMs(iso)).getUTCDay()]; }
+  function dentroDoCiclo(iso) { return iso >= CICLO_INI && iso <= CICLO_FIM; }
+  function limitar(iso) { return iso < CICLO_INI ? CICLO_INI : iso > CICLO_FIM ? CICLO_FIM : iso; }
+
+  function hojeReal() {
+    var d = new Date();
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  }
+
+  function dataExtenso(iso) {
+    var p = iso.split("-");
+    return NOMES_DIAS[diaDaSemana(iso)] + ", " + +p[2] + " de " + MESES[+p[1] - 1] + " de " + p[0];
+  }
+  function curta(iso) { var p = iso.split("-"); return +p[2] + " " + MESES_ABREV[+p[1] - 1]; }
+  function intervalo(a, b) {
+    var pa = a.split("-"), pb = b.split("-");
+    return pa[1] === pb[1] ? +pa[2] + " – " + +pb[2] + " " + MESES_ABREV[+pb[1] - 1] : curta(a) + " – " + curta(b);
+  }
+
+  function frase(t) {
+    t = String(t || "").trim();
+    if (!t) return "";
+    t = t.charAt(0).toUpperCase() + t.slice(1);
+    return /[.!?…]$/.test(t) ? t : t + ".";
+  }
+
+  // "Senhor" em versaletes (nome de Deus), exceto em "nosso Senhor".
+  function texto(t) {
+    return esc(t).replace(/Senhor/g, function (m, off, s) {
+      return s.slice(Math.max(0, off - 6), off) === "nosso " ? m : '<span class="vs">Senhor</span>';
+    });
+  }
+
+  // ------------------------------------------------------------------ armazenamento
+
+  var store = { lidos: {}, tema: null };
+  var memoria = false;
+
+  function carregar() {
+    try {
+      var bruto = localStorage.getItem(STORE_KEY);
+      if (bruto) {
+        var d = JSON.parse(bruto);
+        if (d && typeof d === "object") {
+          store.lidos = d.lidos && typeof d.lidos === "object" ? d.lidos : {};
+          store.tema = d.tema === "claro" || d.tema === "escuro" ? d.tema : null;
+        }
+      }
+    } catch (e) { memoria = true; }
+  }
+  function salvar() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(store)); } catch (e) { memoria = true; }
+  }
+
+  function marcado(iso, idx) { return (store.lidos[iso] || []).indexOf(idx) !== -1; }
+  function alternar(iso, idx) {
+    var lista = (store.lidos[iso] || []).slice();
+    var i = lista.indexOf(idx);
+    if (i === -1) lista.push(idx); else lista.splice(i, 1);
+    lista.sort(function (a, b) { return a - b; });
+    if (lista.length) store.lidos[iso] = lista; else delete store.lidos[iso];
+    salvar();
+  }
+  function definirDia(iso, total, valor) {
+    if (valor) {
+      var todos = [];
+      for (var i = 0; i < total; i++) todos.push(i);
+      store.lidos[iso] = todos;
+    } else {
+      delete store.lidos[iso];
+    }
+    salvar();
+  }
+
+  // ------------------------------------------------------------------ dados
+
+  var lit = null;
+  var plano = null;
+  var porData = {};
+
+  function lerEmbutido(id) {
+    var el = document.getElementById(id);
+    try { return el ? JSON.parse(el.textContent) : null; } catch (e) { return null; }
+  }
+
+  function carregarDados() {
+    lit = lerEmbutido("dados-liturgias");
+    plano = lerEmbutido("dados-plano");
+    if (lit && plano) return Promise.resolve();
+    return Promise.all([
+      fetch("./data/liturgias_semana.json").then(function (r) { return r.json(); }),
+      fetch("./data/plano_leitura.json").then(function (r) { return r.json(); })
+    ]).then(function (r) { lit = r[0]; plano = r[1]; });
+  }
+
+  function indexar() {
+    porData = {};
+    plano.entradas.forEach(function (e) { porData[e.data_iso] = e; });
+  }
+
+  function itensDoDia(e) {
+    var itens = [];
+    (e.leituras_detalhe || []).forEach(function (l) {
+      var icone, rotulo;
+      if (l.tipo === "antigo_testamento") { icone = "at"; rotulo = "Leitura do A.T."; }
+      else if (l.tipo === "epistola") { icone = "nt"; rotulo = "Epístola"; }
+      else if (l.tipo === "evangelho") { icone = "nt"; rotulo = "Evangelho"; }
+      else {
+        icone = ["quinta", "sabado", "terca", "quarta"].indexOf(e.dia_semana) !== -1 ? "at" : "nt";
+        rotulo = icone === "at" ? "Leitura do A.T." : "Leitura do N.T.";
+      }
+      itens.push({ icone: icone, rotulo: rotulo, ref: l.referencia });
+    });
+    if (e.salmo) itens.push({ icone: "sl", rotulo: "Salmo", ref: e.salmo });
+    return itens;
+  }
+
+  function diaFeito(iso) {
+    var e = porData[iso];
+    if (!e) return false;
+    var n = itensDoDia(e).length;
+    var lista = store.lidos[iso] || [];
+    return n > 0 && lista.length >= n;
+  }
+
+  function inicioDaSemana(iso) { return somaDias(CICLO_INI, Math.floor(difDias(CICLO_INI, iso) / 7) * 7); }
+
+  // ------------------------------------------------------------------ peças de HTML
+
+  function checkHtml(iso, idx, rotulo, ref) {
+    var pr = marcado(iso, idx);
+    return '<button type="button" class="check" data-act="toggle" data-check data-iso="' + iso + '" data-idx="' + idx +
+      '" data-nome="' + esc(rotulo + " " + ref) + '" aria-pressed="' + pr + '" aria-label="' +
+      esc((pr ? "Desmarcar: " : "Marcar como lido: ") + rotulo + " " + ref) + '"><span class="check__quadro">' + MARCA + "</span></button>";
+  }
+
+  function itemHtml(iso, it, idx, compacto) {
+    return '<div class="item' + (compacto ? " item--compacto" : "") + '">' +
+      '<span class="item__icone">' + ICONES[it.icone] + "</span>" +
+      '<span class="item__texto"><span class="item__rotulo">' + esc(it.rotulo) + '</span> <span class="item__ref">' + esc(it.ref) + "</span></span>" +
+      checkHtml(iso, idx, it.rotulo, it.ref) + "</div>";
+  }
+
+  function corpoLinha(l) {
+    if (l.segmentos) {
+      return l.segmentos.map(function (s) {
+        return s.comunidade ? "<b>" + texto(s.texto) + "</b>" : texto(s.texto);
+      }).join(" ");
+    }
+    return texto(l.texto);
+  }
+
+  function linhasHtml(linhas, paragrafo) {
+    return linhas.map(function (l, i) {
+      var prox = linhas[i + 1];
+      var cls = "linha";
+      if (paragrafo || l.segmentos) cls += " linha--paragrafo";
+      else {
+        if (l.comunidade) cls += " linha--comunidade";
+        if (l.ref || !prox || (l.comunidade && !prox.comunidade)) cls += " linha--fim";
+      }
+      return '<div class="' + cls + '"><p class="linha__texto">' + corpoLinha(l) + "</p>" +
+        (l.ref ? '<span class="linha__ref">' + esc(l.ref) + "</span>" : "") + "</div>";
+    }).join("");
+  }
+
+  function rotuloSecao(titulo) {
+    return '<div class="secao__rotulo"><h2 class="secao__titulo">' + esc(titulo) + "</h2></div>";
+  }
+
+  function leituraHtml(iso, e, diaObj) {
+    var meta = (diaObj.secoes_meta || {}).silencio_reflexao || {};
+    var nota = frase((meta.notas || [])[0]) || "Um tempo de silêncio diante da Palavra lida.";
+    var itens = itensDoDia(e).map(function (it, i) { return itemHtml(iso, it, i, false); }).join("");
+    return '<section class="leitura"><div class="leitura__lecionario">' + rotuloSecao("Leitura · Lecionário") +
+      '<div class="itens">' + itens + "</div></div>" +
+      '<div class="leitura__silencio">' + rotuloSecao("Silêncio e reflexão") + "<p>" + esc(nota) + "</p></div></section>";
+  }
+
+  function secaoHtml(chave, linhas, meta, iso, e, diaObj) {
+    if (SECOES_OMITIDAS[chave]) return "";
+    if (chave === "leitura") return leituraHtml(iso, e, diaObj);
+
+    var titulo = TITULOS_SECAO[chave] || (meta && meta.titulo) || chave;
+    var corpo = "";
+    var fonte = "";
+
+    if (chave === "benedictus" && lit.benedictus) {
+      corpo = linhasHtml(lit.benedictus.linhas || [], false);
+      if (lit.benedictus.fonte) fonte = '<p class="fonte">' + esc(lit.benedictus.fonte) + "</p>";
+    } else {
+      corpo = linhasHtml(linhas || [], !!SECOES_PARAGRAFO[chave]);
+    }
+
+    var notas = "";
+    if (chave === "cantico_louvor") {
+      notas = '<p class="nota">Use o cântico ou salmo de louvor de sua escolha.</p>';
+    } else {
+      notas = ((meta && meta.notas) || [])
+        .filter(function (n) { return !/^tabelas de leitura|^texto na seção final/i.test(n); })
+        .map(function (n) { return '<p class="nota">' + esc(frase(n)) + "</p>"; }).join("");
+    }
+
+    if (!corpo && !notas) return "";
+    return '<section class="secao">' + rotuloSecao(titulo) + notas + corpo + fonte + "</section>";
+  }
+
+  function caixasHtml(iso) {
+    var ini = inicioDaSemana(iso);
+    var html = "";
+    for (var i = 0; i < 7; i++) {
+      var d = somaDias(ini, i);
+      if (!dentroDoCiclo(d)) continue;
+      var chave = diaDaSemana(d);
+      html += '<a class="caixa' + (d === iso ? " caixa--atual" : "") + (diaFeito(d) ? " caixa--feito" : "") +
+        '" data-iso="' + d + '" href="#/dia/' + d + '" aria-label="' + esc(dataExtenso(d)) + '"' + (d === iso ? ' aria-current="date"' : "") + ">" +
+        '<span class="caixa__sigla">' + SIGLAS[chave] + '</span><span class="caixa__quadro">' + MARCA + "</span></a>";
+    }
+    return html;
+  }
+
+  function semanaHtml(iso, e) {
+    var ini = inicioDaSemana(iso);
+    var fim = somaDias(ini, 6);
+    var dias = "";
+    for (var i = 0; i < 7; i++) {
+      var d = somaDias(ini, i);
+      var en = porData[d];
+      if (!en) continue;
+      var nome = NOMES_DIAS[en.dia_semana] + (en.titulo_liturgico ? " · " + en.titulo_liturgico : "");
+      dias += '<div class="dia"><a class="banda' + (d === iso ? " banda--atual" : "") + '" href="#/dia/' + d + '">' +
+        "<span>" + esc(nome) + '</span><span class="banda__data">' + esc(en.data) + "</span></a>" +
+        itensDoDia(en).map(function (it, k) { return itemHtml(d, it, k, true); }).join("") + "</div>";
+    }
+    return '<div class="semana__cabecalho"><h2 class="titulo-livro">Lecionário</h2>' +
+      '<span class="semana__intervalo">' + esc(curta(ini) + " a " + curta(fim > CICLO_FIM ? CICLO_FIM : fim)) + "</span></div>" +
+      '<p class="semana__sub">' + esc(e.estacao || "") + " · a semana de quinta a quarta</p>" + dias +
+      '<p class="semana__frase" id="frase-semana"></p>';
+  }
+
+  // ------------------------------------------------------------------ telas
+
+  var app = document.getElementById("app");
+
+  function definirEstacao(e) {
+    document.documentElement.setAttribute("data-estacao", (e && e.estacao_css) || "advento");
+    var m = document.getElementById("marca-estacao");
+    if (m) m.textContent = "Ano I" + (e && e.estacao ? " · " + e.estacao : "");
+  }
+
+  function telaDia(iso) {
+    var e = porData[iso];
+    var diaObj = lit.semana_liturgica[e.dia_semana];
+    definirEstacao(e);
+    document.title = e.data + " · " + NOMES_DIAS[e.dia_semana] + " · Kalendar Devocional";
+
+    var secoes = "";
+    if (diaObj) {
+      var meta = diaObj.secoes_meta || {};
+      Object.keys(diaObj.secoes).forEach(function (chave) {
+        secoes += secaoHtml(chave, diaObj.secoes[chave], meta[chave], iso, e, diaObj);
+      });
+    } else {
+      secoes = '<p class="nota">O ofício deste dia não consta em data/liturgias_semana.json.</p>';
+    }
+
+    var sub = e.titulo_liturgico || e.estacao || "";
+    app.innerHTML =
+      '<div class="livro">' +
+      '<article class="pagina pagina--oficio">' +
+      '<div class="oficio-topo"><h1 class="titulo-livro">Ofício Diário</h1>' +
+      '<div class="caixas" role="group" aria-label="Dias da semana com a Palavra">' + caixasHtml(iso) + "</div></div>" +
+      '<div class="dia-nav">' +
+      '<button type="button" class="dia-nav__seta" data-act="prev" aria-label="Dia anterior"' + (iso <= CICLO_INI ? " disabled" : "") + ">‹</button>" +
+      '<label class="sr-only" for="data-dia">Ir para a data</label>' +
+      '<input class="dia-nav__data" id="data-dia" type="date" value="' + iso + '" min="' + CICLO_INI + '" max="' + CICLO_FIM + '" />' +
+      '<button type="button" class="dia-nav__seta" data-act="next" aria-label="Próximo dia"' + (iso >= CICLO_FIM ? " disabled" : "") + ">›</button></div>" +
+      '<p class="data-extenso">' + esc(dataExtenso(iso)) + (sub ? " · " + esc(sub) : "") + "</p>" +
+      secoes +
+      '<div class="fecho"><p>Marque quando quiser. Sem pressa.</p>' +
+      '<button type="button" class="botao-contorno" id="btn-dia" data-act="toggle-dia" data-iso="' + iso + '"></button></div>' +
+      "</article>" +
+      '<aside class="pagina pagina--semana" aria-label="Lecionário da semana">' + semanaHtml(iso, e) + "</aside>" +
+      "</div>";
+
+    window.scrollTo(0, 0);
+    atualizarMarcas();
+  }
+
+  function telaCaderneta() {
+    definirEstacao(porData[limitar(hojeReal())]);
+    document.title = "Caderneta · Kalendar Devocional";
+    var hoje = hojeReal();
+    var semanas = "";
+    for (var w = 0; w < 52; w++) {
+      var ini = somaDias(CICLO_INI, w * 7);
+      var fim = somaDias(ini, 6);
+      var e0 = porData[ini];
+      var e1 = porData[fim];
+      var est = e0 && e1 && e0.estacao !== e1.estacao ? e0.estacao + " · " + e1.estacao : (e0 && e0.estacao) || "";
+      var dias = "";
+      for (var i = 0; i < 7; i++) {
+        var d = somaDias(ini, i);
+        var cls = "cad-dia" + (d > hoje ? " cad-dia--futuro" : "") + (d === hoje ? " cad-dia--hoje" : "") + (diaFeito(d) ? " cad-dia--feito" : "");
+        dias += '<a class="' + cls + '" data-iso="' + d + '" href="#/dia/' + d + '" aria-label="' + esc(dataExtenso(d)) + '">' +
+          "<span>" + +d.slice(8) + '</span><span class="cad-dia__quadro">' + MARCA + "</span></a>";
+      }
+      semanas += '<div class="cad-semana"><div class="cad-semana__titulo"><span>' + esc(intervalo(ini, fim)) + "</span><i>" + esc(est) +
+        '</i></div><div class="cad-dias">' + dias + "</div></div>";
+    }
+
+    var cab = ORDEM_SEMANA.map(function (k) { return "<span>" + SIGLAS[k] + "</span>"; }).join("");
+    app.innerHTML =
+      '<div class="caderneta"><article class="pagina caderneta__pagina">' +
+      '<h1 class="titulo-livro">Caderneta</h1>' +
+      '<p class="caderneta__sub">Os dias em que você esteve com a Palavra.</p>' +
+      '<div class="cad-cabecalho" aria-hidden="true">' + cab + "</div>" + semanas +
+      '<div class="cad-resumo"><p id="cad-resumo-1"></p><p>Os outros dias continuam abertos para você, quando quiser voltar a eles.</p></div>' +
+      '<div class="cad-acoes">' +
+      '<a class="botao-contorno" id="btn-continuar" href="#/">Continuar de onde parei</a>' +
+      '<button type="button" class="botao-texto botao-texto--suave" data-act="exportar">Exportar marcações</button>' +
+      '<label class="botao-texto botao-texto--suave" for="arq-importar" style="cursor:pointer">Importar marcações</label>' +
+      '<input type="file" id="arq-importar" accept="application/json,.json" class="sr-only" />' +
+      '<button type="button" class="botao-texto botao-texto--suave" data-act="limpar">Limpar marcações deste aparelho</button>' +
+      "</div></article></div>";
+    window.scrollTo(0, 0);
+    atualizarMarcas();
+  }
+
+  // ------------------------------------------------------------------ atualização das marcas
+
+  function diasComPalavra() {
+    return plano.entradas.filter(function (e) { return diaFeito(e.data_iso); }).length;
+  }
+
+  function ondeParei() {
+    var ultimo = null;
+    Object.keys(store.lidos).forEach(function (iso) { if (store.lidos[iso].length && (!ultimo || iso > ultimo)) ultimo = iso; });
+    if (!ultimo) return limitar(hojeReal());
+    return diaFeito(ultimo) && ultimo < CICLO_FIM ? somaDias(ultimo, 1) : ultimo;
+  }
+
+  function atualizarMarcas() {
+    document.querySelectorAll("[data-check]").forEach(function (b) {
+      var pr = marcado(b.getAttribute("data-iso"), +b.getAttribute("data-idx"));
+      b.setAttribute("aria-pressed", String(pr));
+      b.setAttribute("aria-label", (pr ? "Desmarcar: " : "Marcar como lido: ") + b.getAttribute("data-nome"));
+    });
+    document.querySelectorAll(".caixa[data-iso]").forEach(function (a) {
+      a.classList.toggle("caixa--feito", diaFeito(a.getAttribute("data-iso")));
+    });
+    document.querySelectorAll(".cad-dia[data-iso]").forEach(function (a) {
+      a.classList.toggle("cad-dia--feito", diaFeito(a.getAttribute("data-iso")));
+    });
+
+    var btn = document.getElementById("btn-dia");
+    if (btn) btn.textContent = diaFeito(btn.getAttribute("data-iso")) ? "Desmarcar o dia" : "Marcar o dia como lido";
+
+    var fr = document.getElementById("frase-semana");
+    if (fr) {
+      var ini = inicioDaSemana(rotaAtual().iso);
+      var n = 0;
+      for (var i = 0; i < 7; i++) if (diaFeito(somaDias(ini, i))) n++;
+      fr.textContent = n === 0 ? "Quando quiser, é só começar." :
+        "Nesta semana você esteve com a Palavra em " + n + (n === 1 ? " dia." : " dias.");
+    }
+
+    var res = document.getElementById("cad-resumo-1");
+    if (res) {
+      var t = diasComPalavra();
+      res.innerHTML = t === 0 ? "Sua caderneta começa aqui." :
+        "Até aqui, <b>" + t + (t === 1 ? " dia</b> com a Palavra." : " dias</b> com a Palavra.");
+    }
+    var cont = document.getElementById("btn-continuar");
+    if (cont) cont.setAttribute("href", "#/dia/" + ondeParei());
+  }
+
+  // ------------------------------------------------------------------ rotas
+
+  function rotaAtual() {
+    var h = location.hash || "#/";
+    if (h.indexOf("#/caderneta") === 0) return { tela: "caderneta" };
+    var m = h.match(/^#\/dia\/(\d{4}-\d{2}-\d{2})$/);
+    var iso = limitar(m ? m[1] : hojeReal());
+    return { tela: "dia", iso: iso };
+  }
+
+  function renderizar() {
+    var r = rotaAtual();
+    if (r.tela === "caderneta") telaCaderneta(); else telaDia(r.iso);
+  }
+
+  function irPara(iso) { location.hash = "#/dia/" + limitar(iso); }
+
+  // ------------------------------------------------------------------ interações
+
+  function aviso(msg) {
+    var el = document.createElement("div");
+    el.className = "aviso";
+    el.setAttribute("role", "status");
+    el.textContent = msg;
+    document.body.appendChild(el);
+    setTimeout(function () { el.remove(); }, 3500);
+  }
+
+  function aplicarTema(t) {
+    document.documentElement.setAttribute("data-theme", t === "escuro" ? "dark" : "light");
+    var b = document.getElementById("btn-tema");
+    if (b) b.textContent = t === "escuro" ? "Claro" : "Escuro";
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", t === "escuro" ? "#1a1715" : "#f1ece2");
+  }
+  function temaAtual() {
+    return document.documentElement.getAttribute("data-theme") === "dark" ? "escuro" : "claro";
+  }
+
+  function exportar() {
+    var dados = JSON.stringify({ app: "kalendar-devocional", versao: 1, exportadoEm: new Date().toISOString(), lidos: store.lidos }, null, 2);
+    var url = URL.createObjectURL(new Blob([dados], { type: "application/json" }));
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "kalendar-marcacoes.json";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    aviso("Marcações exportadas.");
+  }
+
+  function importar(arquivo) {
+    var leitor = new FileReader();
+    leitor.onload = function () {
+      try {
+        var d = JSON.parse(leitor.result);
+        if (!d || typeof d.lidos !== "object") throw new Error("formato");
+        var n = 0;
+        Object.keys(d.lidos).forEach(function (iso) {
+          if (!/^\d{4}-\d{2}-\d{2}$/.test(iso) || !Array.isArray(d.lidos[iso])) return;
+          var atual = store.lidos[iso] || [];
+          var uniao = atual.concat(d.lidos[iso].filter(function (x) { return Number.isInteger(x) && x >= 0 && x < 20; }));
+          uniao = uniao.filter(function (x, i) { return uniao.indexOf(x) === i; }).sort(function (a, b) { return a - b; });
+          if (uniao.length) { store.lidos[iso] = uniao; n++; }
+        });
+        salvar();
+        atualizarMarcas();
+        aviso("Marcações importadas (" + n + " dias).");
+      } catch (e) {
+        aviso("Não consegui ler esse arquivo.");
+      }
+    };
+    leitor.readAsText(arquivo);
+  }
+
+  document.addEventListener("click", function (ev) {
+    var el = ev.target.closest("[data-act], #btn-tema");
+    if (!el) return;
+    if (el.id === "btn-tema") {
+      var novo = temaAtual() === "escuro" ? "claro" : "escuro";
+      store.tema = novo;
+      salvar();
+      aplicarTema(novo);
+      return;
+    }
+    var acao = el.getAttribute("data-act");
+    if (acao === "toggle") {
+      alternar(el.getAttribute("data-iso"), +el.getAttribute("data-idx"));
+      atualizarMarcas();
+    } else if (acao === "toggle-dia") {
+      var iso = el.getAttribute("data-iso");
+      definirDia(iso, itensDoDia(porData[iso]).length, !diaFeito(iso));
+      atualizarMarcas();
+    } else if (acao === "prev") {
+      irPara(somaDias(rotaAtual().iso, -1));
+    } else if (acao === "next") {
+      irPara(somaDias(rotaAtual().iso, 1));
+    } else if (acao === "exportar") {
+      exportar();
+    } else if (acao === "limpar") {
+      if (window.confirm("Apagar todas as marcações guardadas neste aparelho? Isso não pode ser desfeito.")) {
+        store.lidos = {};
+        salvar();
+        atualizarMarcas();
+        aviso("Marcações apagadas.");
+      }
+    }
+  });
+
+  document.addEventListener("change", function (ev) {
+    var t = ev.target;
+    if (t.id === "data-dia" && t.value) irPara(t.value);
+    if (t.id === "arq-importar" && t.files && t.files[0]) { importar(t.files[0]); t.value = ""; }
+  });
+
+  document.addEventListener("keydown", function (ev) {
+    if (ev.altKey || ev.ctrlKey || ev.metaKey) return;
+    var tag = (ev.target.tagName || "").toLowerCase();
+    if (tag === "input" || tag === "textarea" || tag === "select") return;
+    var r = rotaAtual();
+    if (r.tela !== "dia") return;
+    if (ev.key === "ArrowLeft") irPara(somaDias(r.iso, -1));
+    if (ev.key === "ArrowRight") irPara(somaDias(r.iso, 1));
+  });
+
+  window.addEventListener("hashchange", renderizar);
+
+  // ------------------------------------------------------------------ início
+
+  carregar();
+  aplicarTema(store.tema || temaAtual());
+
+  carregarDados()
+    .then(function () {
+      indexar();
+      renderizar();
+      if (memoria) aviso("Não foi possível guardar as marcações neste navegador.");
+    })
+    .catch(function (err) {
+      app.innerHTML = '<div class="livro"><article class="pagina"><p class="nota">Não foi possível carregar os dados (' + esc(err.message) +
+        "). Rode <code>python scripts/parse_kalendar.py</code> para embuti-los no index.html.</p></article></div>";
+    });
+
+  if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("./sw.js").catch(function () { /* sem offline, tudo bem */ });
+    });
+  }
+})();

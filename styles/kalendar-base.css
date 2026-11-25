@@ -1,0 +1,263 @@
+/* ==========================================================================
+   KALENDAR DEVOCIONAL — CSS BASE COM CORES POR ESTAÇÃO
+   ==========================================================================
+   COMO EDITAR AS CORES FACILMENTE:
+   Altere apenas os valores HEX dentro do bloco "PALETA EDITÁVEL POR ESTAÇÃO"
+   logo abaixo. Para ativar uma estação no HTML/JS, defina o atributo:
+     data-estacao="advento" | "natal" | "quaresma" | "pascoa" | "pentecostes" | "tempo-comum"
+   (ou use os aliases sazonais: "encarnacao", "redencao", "missao")
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     1. PALETA EDITÁVEL POR ESTAÇÃO (mude aqui quando quiser)
+     ------------------------------------------------------------------------ */
+  --estacao-advento: #5b4b8a;         /* Roxo / preparação e espera */
+  --estacao-advento-bg: #f4f2fa;
+
+  --estacao-natal: #b07d2b;           /* Dourado suave / luz e encarnação (substitui branco em fundo claro) */
+  --estacao-natal-bg: #fbf7ef;
+
+  --estacao-quaresma: #6e3b6e;        /* Ameixa/roxo sóbrio / conversão e quaresma */
+  --estacao-quaresma-bg: #f7f1f7;
+
+  --estacao-pascoa: #9a6b1f;          /* Ouro litúrgico / ressurreição e festa pascal */
+  --estacao-pascoa-bg: #fcf8ee;
+
+  --estacao-pentecostes: #a62c2b;     /* Vermelho / fogo do Espírito e missão */
+  --estacao-pentecostes-bg: #fdf2f2;
+
+  --estacao-tempo-comum: #2d6a4f;     /* Verde / crescimento no cotidiano */
+  --estacao-tempo-comum-bg: #f1f7f4;
+
+  /* Cor ativa padrão (fallbacks apontam para Tempo Comum) */
+  --accent-primary: var(--estacao-tempo-comum);
+  --accent-soft-bg: var(--estacao-tempo-comum-bg);
+
+  /* ------------------------------------------------------------------------
+     2. SUPERFÍCIES E TINTAS BASE (estilo editorial do livreto)
+     ------------------------------------------------------------------------ */
+  --bg-page: #faf9f6;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f2f0eb;
+  --bg-community: var(--accent-soft-bg);
+
+  --ink-primary: #141413;
+  --ink-secondary: #4a4945;
+  --ink-muted: #76746e;
+  --border-hairline: #e2dfd7;
+  --border-strong: #141413;
+
+  /* ------------------------------------------------------------------------
+     3. TIPOGRAFIA, RITMO E ESPAÇAMENTO
+     ------------------------------------------------------------------------ */
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "Inter", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+
+  --leading-tight: 1.2;
+  --leading-snug: 1.4;
+  --leading-reading: 1.75;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --measure: 66ch;
+}
+
+/* Mapeamento automático da estação ativa via data-estacao */
+[data-estacao="advento"],
+[data-estacao="encarnacao"] {
+  --accent-primary: var(--estacao-advento);
+  --accent-soft-bg: var(--estacao-advento-bg);
+}
+
+[data-estacao="natal"] {
+  --accent-primary: var(--estacao-natal);
+  --accent-soft-bg: var(--estacao-natal-bg);
+}
+
+[data-estacao="quaresma"],
+[data-estacao="redencao"] {
+  --accent-primary: var(--estacao-quaresma);
+  --accent-soft-bg: var(--estacao-quaresma-bg);
+}
+
+[data-estacao="pascoa"] {
+  --accent-primary: var(--estacao-pascoa);
+  --accent-soft-bg: var(--estacao-pascoa-bg);
+}
+
+[data-estacao="pentecostes"] {
+  --accent-primary: var(--estacao-pentecostes);
+  --accent-soft-bg: var(--estacao-pentecostes-bg);
+}
+
+[data-estacao="tempo-comum"],
+[data-estacao="missao"] {
+  --accent-primary: var(--estacao-tempo-comum);
+  --accent-soft-bg: var(--estacao-tempo-comum-bg);
+}
+
+/* Tema escuro opcional mantendo os tons de estação */
+:root[data-theme="dark"] {
+  --bg-page: #121211;
+  --bg-surface: #191918;
+  --bg-subtle: #222220;
+
+  --ink-primary: #f2f0ea;
+  --ink-secondary: #c7c4bc;
+  --ink-muted: #8f8c84;
+  --border-hairline: #2c2b28;
+  --border-strong: #f2f0ea;
+
+  --estacao-advento-bg: #211d30;
+  --estacao-natal-bg: #292214;
+  --estacao-quaresma-bg: #281928;
+  --estacao-pascoa-bg: #2b2312;
+  --estacao-pentecostes-bg: #2e1717;
+  --estacao-tempo-comum-bg: #15251e;
+}
+
+/* Base e componentes */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-page);
+  color: var(--ink-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-reading);
+}
+
+.kalendar-shell {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4) var(--space-16);
+}
+
+.kalendar-reading-column {
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+
+.kalendar-header {
+  border-bottom: 2px solid var(--accent-primary);
+  padding-bottom: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+.kalendar-kicker {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  margin: 0 0 var(--space-2);
+}
+
+.kalendar-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-2);
+}
+
+.oficio-dia-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border-hairline);
+  margin-bottom: var(--space-8);
+}
+
+.oficio-dia-titulo {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.oficio-genero-tag {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  background: var(--accent-soft-bg);
+  border: 1px solid color-mix(in srgb, var(--accent-primary) 25%, transparent);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+}
+
+.oficio-secao {
+  margin-bottom: var(--space-8);
+}
+
+.oficio-secao-titulo {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  margin: 0 0 var(--space-3);
+}
+
+.oficio-linha {
+  margin: 0 0 var(--space-3);
+}
+
+.oficio-linha--comunidade {
+  font-weight: 700;
+  margin-left: var(--space-6);
+  padding: var(--space-2) var(--space-3);
+  border-left: 3px solid var(--accent-primary);
+  background-color: var(--accent-soft-bg);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.leitura-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  border-left: 4px solid var(--accent-primary);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+.leitura-chip {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  background-color: var(--accent-soft-bg);
+  color: var(--ink-primary);
+  border: 1px solid color-mix(in srgb, var(--accent-primary) 22%, transparent);
+  border-radius: var(--radius-sm);
+  padding: var(--space-1) var(--space-3);
+}

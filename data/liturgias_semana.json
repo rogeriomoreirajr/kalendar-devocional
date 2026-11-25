@@ -1,0 +1,2366 @@
+{
+  "fonte": "Kalendar 2026–2027 · Ano I · Edição Compacta · DIA",
+  "semana_liturgica": {
+    "quinta": {
+      "dia_semana": "quinta",
+      "genero": "A Torá",
+      "titulo_cabecalho": "QUINTA-FEIRA • DIA",
+      "pagina_inicio": 10,
+      "secoes": {
+        "abertura": [
+          {
+            "texto": "Mas vem a hora — e já chegou —",
+            "comunidade": false
+          },
+          {
+            "texto": "em que os verdadeiros adoradores adorarão o Pai",
+            "comunidade": false
+          },
+          {
+            "texto": "em espírito e em verdade.",
+            "comunidade": false
+          },
+          {
+            "texto": "Porque são esses que o Pai procura",
+            "comunidade": true
+          },
+          {
+            "texto": "para seus adoradores.",
+            "comunidade": true,
+            "ref": "João 4:23"
+          }
+        ],
+        "invocacao": [
+          {
+            "texto": "Em nome do Pai, e do Filho, e do Espírito Santo.",
+            "comunidade": false
+          },
+          {
+            "texto": "Amém.",
+            "comunidade": true
+          },
+          {
+            "texto": "O nosso socorro está no nome do Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "que fez o céu e a terra.",
+            "comunidade": true,
+            "ref": "Salmo 124:8"
+          },
+          {
+            "texto": "Eu disse: “Confessarei ao Senhor as minhas transgressões”;",
+            "comunidade": false
+          },
+          {
+            "texto": "e tu perdoaste a iniquidade do meu pecado.",
+            "comunidade": true,
+            "ref": "Salmo 32:5"
+          }
+        ],
+        "confissao": [
+          {
+            "texto": "Deus muitíssimo misericordioso, Pai de nosso Senhor Jesus Cristo, nós confessamos que temos pecado em pensamento, palavra e ação. Não te amamos de todo o coração. Não amamos o próximo como a nós mesmos. Em tua misericórdia, perdoa o que fomos, emenda o que somos e dirige o que seremos; que possamos fazer o que é justo, amar sem interesses e caminhar humildemente contigo, nosso Deus.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Deus muitíssimo misericordioso, Pai de nosso Senhor Jesus Cristo, nós confessamos que temos pecado em pensamento, palavra e ação. Não te amamos de todo o coração. Não amamos o próximo como a nós mesmos. Em tua misericórdia, perdoa o que fomos, emenda o que somos e dirige o que seremos; que possamos fazer o que é justo, amar sem interesses e caminhar humildemente contigo,",
+                "comunidade": false
+              },
+              {
+                "texto": " nosso Deus.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          },
+          {
+            "texto": "Concede ao teu povo fiel, ó Senhor misericordioso, perdão e paz; para que sejamos limpos de todos os nossos pecados e te sirvamos com a mente tranquila; por Jesus Cristo, nosso Senhor.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Concede ao teu povo fiel, ó Senhor misericordioso, perdão e paz; para que sejamos limpos de todos os nossos pecados e te sirvamos",
+                "comunidade": false
+              },
+              {
+                "texto": " com a mente tranquila; por Jesus Cristo, nosso Senhor.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          }
+        ],
+        "leitura": [],
+        "silencio_reflexao": [],
+        "salmo": [],
+        "gloria": [
+          {
+            "texto": "Glória ao Pai e ao Filho e ao Espírito Santo;",
+            "comunidade": false
+          },
+          {
+            "texto": "como era no princípio, é agora e será sempre,",
+            "comunidade": true
+          },
+          {
+            "texto": "por todos os séculos. Amém.",
+            "comunidade": true
+          }
+        ],
+        "aclamacao": [
+          {
+            "texto": "Bendize, ó minha alma, ao Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "e tudo o que há em mim bendiga ao seu santo nome.",
+            "comunidade": true,
+            "ref": "Salmo 103:1"
+          }
+        ],
+        "cantico_louvor": [],
+        "benedictus": [],
+        "oracao_do_senhor": [
+          {
+            "texto": "Senhor, lembra-te de nós em teu reino",
+            "comunidade": false
+          },
+          {
+            "texto": "e ensina-nos a orar.",
+            "comunidade": true,
+            "ref": "Lucas 23:42; Lucas 11:1"
+          },
+          {
+            "texto": "Pai nosso, que estás nos céus.",
+            "comunidade": true
+          },
+          {
+            "texto": "Santificado seja o teu Nome.",
+            "comunidade": true
+          },
+          {
+            "texto": "Venha o teu Reino.",
+            "comunidade": true
+          },
+          {
+            "texto": "Seja feita a tua vontade, assim na terra como no céu.",
+            "comunidade": true
+          },
+          {
+            "texto": "O pão nosso de cada dia nos dá hoje.",
+            "comunidade": true
+          },
+          {
+            "texto": "Perdoa-nos as nossas dívidas,",
+            "comunidade": true
+          },
+          {
+            "texto": "assim como nós perdoamos aos nossos devedores.",
+            "comunidade": true
+          },
+          {
+            "texto": "E não nos deixes cair em tentação,",
+            "comunidade": true
+          },
+          {
+            "texto": "mas livra-nos do mal;",
+            "comunidade": true
+          },
+          {
+            "texto": "pois teu é o Reino, o poder e a glória para sempre.",
+            "comunidade": true
+          },
+          {
+            "texto": "Amém.",
+            "comunidade": true,
+            "ref": "Mateus 6:9b–13"
+          }
+        ],
+        "suplica": [
+          {
+            "texto": "Mostra-nos, Senhor, a tua misericórdia",
+            "comunidade": false
+          },
+          {
+            "texto": "e concede-nos a tua salvação.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, guia aqueles que nos governam",
+            "comunidade": false
+          },
+          {
+            "texto": "e conduz-nos no caminho da justiça e da verdade.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, salva o teu povo",
+            "comunidade": false
+          },
+          {
+            "texto": "e abençoa a tua herança.",
+            "comunidade": true
+          },
+          {
+            "texto": "Concede paz em nosso tempo, ó Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "pois não há outro que lute por nós, senão somente tu, ó Deus.",
+            "comunidade": true
+          },
+          {
+            "texto": "Que os necessitados não sejam esquecidos, ó Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "nem a esperança dos pobres seja frustrada.",
+            "comunidade": true
+          },
+          {
+            "texto": "Cria em nós, ó Deus, um coração puro,",
+            "comunidade": false
+          },
+          {
+            "texto": "e não nos retires o teu Santo Espírito.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, ouve a nossa oração;",
+            "comunidade": false
+          },
+          {
+            "texto": "E chegue a ti o nosso clamor.",
+            "comunidade": true
+          }
+        ],
+        "oracoes_intercessao": [],
+        "coleta": [
+          {
+            "texto": "Pai celestial, em quem vivemos, nos movemos e existimos: humildemente te suplicamos que nos guies e governes por teu Espírito Santo, para que, em meio a todos os cuidados e ocupações de nossa vida, não nos esqueçamos de ti, mas nos lembremos de que caminhamos sempre sob o teu olhar; mediante Jesus Cristo, nosso Senhor.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Pai celestial, em quem vivemos, nos movemos e existimos: humildemente te suplicamos que nos guies e governes por teu Espírito Santo, para que, em meio a todos os cuidados e ocupações de nossa vida, não nos esqueçamos de ti, mas nos lembremos de que caminhamos sempre sob o teu olhar; mediante Jesus Cristo, nosso",
+                "comunidade": false
+              },
+              {
+                "texto": " Senhor.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          }
+        ]
+      },
+      "secoes_meta": {
+        "abertura": {
+          "titulo": "ABERTURA",
+          "notas": []
+        },
+        "invocacao": {
+          "titulo": "INVOCAÇÃO",
+          "notas": []
+        },
+        "confissao": {
+          "titulo": "CONFISSÃO DE PECADO E SÚPLICA PELO PERDÃO",
+          "notas": []
+        },
+        "leitura": {
+          "titulo": "LEITURA",
+          "notas": [
+            "tabelas de leitura, Ano I p. 30"
+          ]
+        },
+        "silencio_reflexao": {
+          "titulo": "SILÊNCIO E REFLEXÃO",
+          "notas": [
+            "um tempo de silêncio diante da Palavra lida"
+          ]
+        },
+        "salmo": {
+          "titulo": "SALMO",
+          "notas": [
+            "tabelas de leitura, Ano I p. 30"
+          ]
+        },
+        "gloria": {
+          "titulo": "GLORIA PATRI",
+          "notas": []
+        },
+        "aclamacao": {
+          "titulo": "ACLAMAÇÃO",
+          "notas": []
+        },
+        "cantico_louvor": {
+          "titulo": "CÂNTICO DE LOUVOR",
+          "notas": []
+        },
+        "benedictus": {
+          "titulo": "BENEDICTUS",
+          "notas": [
+            "texto na seção final, p. 48"
+          ]
+        },
+        "oracao_do_senhor": {
+          "titulo": "ORAÇÃO DO SENHOR",
+          "notas": []
+        },
+        "suplica": {
+          "titulo": "SÚPLICA DIURNA",
+          "notas": []
+        },
+        "oracoes_intercessao": {
+          "titulo": "ORAÇÕES DO CORAÇÃO E INTERCESSÃO",
+          "notas": [
+            "tempo reservado à oração pessoal e comunitária"
+          ]
+        },
+        "coleta": {
+          "titulo": "COLETA",
+          "notas": []
+        }
+      }
+    },
+    "sexta": {
+      "dia_semana": "sexta",
+      "genero": "Evangelhos",
+      "titulo_cabecalho": "SEXTA-FEIRA • DIA",
+      "pagina_inicio": 13,
+      "secoes": {
+        "abertura": [
+          {
+            "texto": "Porque assim diz o Alto, o Sublime,",
+            "comunidade": false
+          },
+          {
+            "texto": "que habita a eternidade e cujo nome é Santo:",
+            "comunidade": false
+          },
+          {
+            "texto": "“Habito no alto e santo lugar,",
+            "comunidade": false
+          },
+          {
+            "texto": "mas habito também com o contrito e abatido de espírito,",
+            "comunidade": true
+          },
+          {
+            "texto": "para vivificar o espírito dos abatidos",
+            "comunidade": true
+          },
+          {
+            "texto": "e vivificar o coração dos contritos.”",
+            "comunidade": true,
+            "ref": "Isaías 57:15"
+          }
+        ],
+        "invocacao": [
+          {
+            "texto": "Em nome do Pai, e do Filho, e do Espírito Santo.",
+            "comunidade": false
+          },
+          {
+            "texto": "Amém.",
+            "comunidade": true
+          },
+          {
+            "texto": "O nosso socorro está no nome do Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "que fez o céu e a terra.",
+            "comunidade": true,
+            "ref": "Salmo 124:8"
+          },
+          {
+            "texto": "Eu disse: “Confessarei ao Senhor as minhas transgressões”;",
+            "comunidade": false
+          },
+          {
+            "texto": "e tu perdoaste a iniquidade do meu pecado.",
+            "comunidade": true,
+            "ref": "Salmo 32:5"
+          }
+        ],
+        "confissao": [
+          {
+            "texto": "Misericordioso Deus, confessamos que temos pecado contra ti em pensamentos, palavras e ações, obras e omissões. Não temos amado o Senhor de todo coração nem o próximo como a nós mesmos. Estamos verdadeiramente contritos e humildemente arrependidos. Por amor de teu Filho, nosso Senhor Jesus Cristo, tem misericórdia de nós. Que possamos contar com a tua bondade e trilhar teus caminhos para a glória do teu santo nome.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Misericordioso Deus, confessamos que temos pecado contra ti em pensamentos, palavras e ações, obras e omissões. Não temos amado o Senhor de todo coração nem o próximo como a nós mesmos. Estamos verdadeiramente contritos e humildemente arrependidos. Por amor de teu Filho, nosso Senhor Jesus Cristo, tem misericórdia de nós. Que possamos contar com a tua bondade e",
+                "comunidade": false
+              },
+              {
+                "texto": " trilhar teus caminhos para a glória do teu santo nome.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          },
+          {
+            "texto": "Concede ao teu povo fiel, ó Senhor misericordioso, perdão e paz; para que sejamos limpos de todos os nossos pecados e te sirvamos com a mente tranquila; por Jesus Cristo, nosso Senhor.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Concede ao teu povo fiel, ó Senhor misericordioso, perdão e paz; para que sejamos limpos de todos os nossos pecados e te sirvamos",
+                "comunidade": false
+              },
+              {
+                "texto": " com a mente tranquila; por Jesus Cristo, nosso Senhor.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          }
+        ],
+        "leitura": [],
+        "silencio_reflexao": [],
+        "salmo": [],
+        "gloria": [
+          {
+            "texto": "Glória ao Pai e ao Filho e ao Espírito Santo;",
+            "comunidade": false
+          },
+          {
+            "texto": "como era no princípio, é agora e será sempre,",
+            "comunidade": true
+          },
+          {
+            "texto": "por todos os séculos. Amém.",
+            "comunidade": true
+          }
+        ],
+        "aclamacao": [
+          {
+            "texto": "Perto está o Senhor de todos os que o invocam,",
+            "comunidade": false
+          },
+          {
+            "texto": "de todos os que o invocam em verdade.",
+            "comunidade": true,
+            "ref": "Salmo 145:18"
+          }
+        ],
+        "cantico_louvor": [],
+        "benedictus": [],
+        "oracao_do_senhor": [
+          {
+            "texto": "Senhor, lembra-te de nós em teu reino",
+            "comunidade": false
+          },
+          {
+            "texto": "e ensina-nos a orar.",
+            "comunidade": true,
+            "ref": "Lucas 23:42; Lucas 11:1"
+          },
+          {
+            "texto": "Pai nosso, que estás nos céus.",
+            "comunidade": true
+          },
+          {
+            "texto": "Santificado seja o teu Nome.",
+            "comunidade": true
+          },
+          {
+            "texto": "Venha o teu Reino.",
+            "comunidade": true
+          },
+          {
+            "texto": "Seja feita a tua vontade, assim na terra como no céu.",
+            "comunidade": true
+          },
+          {
+            "texto": "O pão nosso de cada dia nos dá hoje.",
+            "comunidade": true
+          },
+          {
+            "texto": "Perdoa-nos as nossas dívidas,",
+            "comunidade": true
+          },
+          {
+            "texto": "assim como nós perdoamos aos nossos devedores.",
+            "comunidade": true
+          },
+          {
+            "texto": "E não nos deixes cair em tentação,",
+            "comunidade": true
+          },
+          {
+            "texto": "mas livra-nos do mal;",
+            "comunidade": true
+          },
+          {
+            "texto": "pois teu é o Reino, o poder e a glória para sempre.",
+            "comunidade": true
+          },
+          {
+            "texto": "Amém.",
+            "comunidade": true,
+            "ref": "Mateus 6:9b–13"
+          }
+        ],
+        "suplica": [
+          {
+            "texto": "Mostra-nos, Senhor, a tua misericórdia",
+            "comunidade": false
+          },
+          {
+            "texto": "e concede-nos a tua salvação.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, guia aqueles que nos governam",
+            "comunidade": false
+          },
+          {
+            "texto": "e conduz-nos no caminho da justiça e da verdade.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, salva o teu povo",
+            "comunidade": false
+          },
+          {
+            "texto": "e abençoa a tua herança.",
+            "comunidade": true
+          },
+          {
+            "texto": "Concede paz em nosso tempo, ó Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "pois não há outro que lute por nós, senão somente tu, ó Deus.",
+            "comunidade": true
+          },
+          {
+            "texto": "Que os necessitados não sejam esquecidos, ó Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "nem a esperança dos pobres seja frustrada.",
+            "comunidade": true
+          },
+          {
+            "texto": "Cria em nós, ó Deus, um coração puro,",
+            "comunidade": false
+          },
+          {
+            "texto": "e não nos retires o teu Santo Espírito.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, ouve a nossa oração;",
+            "comunidade": false
+          },
+          {
+            "texto": "E chegue a ti o nosso clamor.",
+            "comunidade": true
+          }
+        ],
+        "oracoes_intercessao": [],
+        "coleta": [
+          {
+            "texto": "Deus Todo-Poderoso, cujo Filho muito amado não ascendeu à alegria sem antes sofrer, nem entrou na glória antes de ser crucificado: concede-nos, por tua misericórdia, que, caminhando pelo caminho da cruz, reconheçamos nele o próprio caminho da vida e da paz; pelo poder de Jesus Cristo, teu Filho, nosso Senhor.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Deus Todo-Poderoso, cujo Filho muito amado não ascendeu à alegria sem antes sofrer, nem entrou na glória antes de ser crucificado: concede-nos, por tua misericórdia, que, caminhando pelo caminho da cruz, reconheçamos nele o próprio caminho da vida e da paz; pelo",
+                "comunidade": false
+              },
+              {
+                "texto": " poder de Jesus Cristo, teu Filho, nosso Senhor.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          }
+        ]
+      },
+      "secoes_meta": {
+        "abertura": {
+          "titulo": "ABERTURA",
+          "notas": []
+        },
+        "invocacao": {
+          "titulo": "INVOCAÇÃO",
+          "notas": []
+        },
+        "confissao": {
+          "titulo": "CONFISSÃO DE PECADO E SÚPLICA PELO PERDÃO",
+          "notas": []
+        },
+        "leitura": {
+          "titulo": "LEITURA",
+          "notas": [
+            "tabelas de leitura, Ano I p. 30"
+          ]
+        },
+        "silencio_reflexao": {
+          "titulo": "SILÊNCIO E REFLEXÃO",
+          "notas": [
+            "um tempo de silêncio diante da Palavra lida"
+          ]
+        },
+        "salmo": {
+          "titulo": "SALMO",
+          "notas": [
+            "tabelas de leitura, Ano I p. 30"
+          ]
+        },
+        "gloria": {
+          "titulo": "GLORIA PATRI",
+          "notas": []
+        },
+        "aclamacao": {
+          "titulo": "ACLAMAÇÃO",
+          "notas": []
+        },
+        "cantico_louvor": {
+          "titulo": "CÂNTICO DE LOUVOR",
+          "notas": []
+        },
+        "benedictus": {
+          "titulo": "BENEDICTUS",
+          "notas": [
+            "texto na seção final, p. 48"
+          ]
+        },
+        "oracao_do_senhor": {
+          "titulo": "ORAÇÃO DO SENHOR",
+          "notas": []
+        },
+        "suplica": {
+          "titulo": "SÚPLICA DIURNA",
+          "notas": []
+        },
+        "oracoes_intercessao": {
+          "titulo": "ORAÇÕES DO CORAÇÃO E INTERCESSÃO",
+          "notas": [
+            "tempo reservado à oração pessoal e comunitária"
+          ]
+        },
+        "coleta": {
+          "titulo": "COLETA",
+          "notas": []
+        }
+      }
+    },
+    "sabado": {
+      "dia_semana": "sabado",
+      "genero": "História de Israel",
+      "titulo_cabecalho": "SÁBADO • DIA",
+      "pagina_inicio": 16,
+      "secoes": {
+        "abertura": [
+          {
+            "texto": "Rendei graças ao Senhor, invocai o seu nome,",
+            "comunidade": false
+          },
+          {
+            "texto": "fazei conhecidos, entre os povos, os seus feitos.",
+            "comunidade": true,
+            "ref": "Salmo 105:1"
+          }
+        ],
+        "invocacao": [
+          {
+            "texto": "Em nome do Pai, e do Filho, e do Espírito Santo.",
+            "comunidade": false
+          },
+          {
+            "texto": "Amém.",
+            "comunidade": true
+          },
+          {
+            "texto": "O nosso socorro está no nome do Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "que fez o céu e a terra.",
+            "comunidade": true,
+            "ref": "Salmo 124:8"
+          },
+          {
+            "texto": "Eu disse: “Confessarei ao Senhor as minhas transgressões”;",
+            "comunidade": false
+          },
+          {
+            "texto": "e tu perdoaste a iniquidade do meu pecado.",
+            "comunidade": true,
+            "ref": "Salmo 32:5"
+          }
+        ],
+        "confissao": [
+          {
+            "texto": "Deus Todo-Poderoso e Pai, confessamos a ti, uns aos outros e a toda a companhia do céu, que pecamos, por nossa própria culpa, em pensamento, palavra e obra, e no que deixamos de fazer. Por amor de teu Filho nosso Senhor Jesus Cristo, tem piedade de nós, perdoa os nossos pecados, e pelo poder do teu Santo Espírito levanta-nos para te servirmos em novidade de vida, para a glória do teu Nome.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Deus Todo-Poderoso e Pai, confessamos a ti, uns aos outros e a toda a companhia do céu, que pecamos, por nossa própria culpa, em pensamento, palavra e obra, e no que deixamos de fazer. Por amor de teu Filho nosso Senhor Jesus Cristo, tem piedade de nós, perdoa os nossos pecados, e pelo poder do teu Santo Espírito levanta-nos para",
+                "comunidade": false
+              },
+              {
+                "texto": " te servirmos em novidade de vida, para a glória do teu Nome.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          },
+          {
+            "texto": "Que Deus Todo-Poderoso nos conceda o perdão de todos os nossos pecados, e a graça e o consolo do Espírito Santo.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Que Deus Todo-Poderoso nos conceda o perdão de todos os nossos",
+                "comunidade": false
+              },
+              {
+                "texto": " pecados, e a graça e o consolo do Espírito Santo.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          }
+        ],
+        "leitura": [],
+        "silencio_reflexao": [],
+        "salmo": [],
+        "gloria": [
+          {
+            "texto": "Glória ao Pai e ao Filho e ao Espírito Santo;",
+            "comunidade": false
+          },
+          {
+            "texto": "como era no princípio, é agora e será sempre,",
+            "comunidade": true
+          },
+          {
+            "texto": "por todos os séculos. Amém.",
+            "comunidade": true
+          }
+        ],
+        "aclamacao": [
+          {
+            "texto": "O teu reino é um reino eterno,",
+            "comunidade": false
+          },
+          {
+            "texto": "e o teu domínio subsiste por todas as gerações.",
+            "comunidade": true,
+            "ref": "Salmo 145:13a"
+          }
+        ],
+        "cantico_louvor": [],
+        "benedictus": [],
+        "oracao_do_senhor": [
+          {
+            "texto": "Senhor, lembra-te de nós em teu reino",
+            "comunidade": false
+          },
+          {
+            "texto": "e ensina-nos a orar.",
+            "comunidade": true,
+            "ref": "Lucas 23:42; Lucas 11:1"
+          },
+          {
+            "texto": "Pai nosso, que estás nos céus.",
+            "comunidade": true
+          },
+          {
+            "texto": "Santificado seja o teu Nome.",
+            "comunidade": true
+          },
+          {
+            "texto": "Venha o teu Reino.",
+            "comunidade": true
+          },
+          {
+            "texto": "Seja feita a tua vontade, assim na terra como no céu.",
+            "comunidade": true
+          },
+          {
+            "texto": "O pão nosso de cada dia nos dá hoje.",
+            "comunidade": true
+          },
+          {
+            "texto": "Perdoa-nos as nossas dívidas,",
+            "comunidade": true
+          },
+          {
+            "texto": "assim como nós perdoamos aos nossos devedores.",
+            "comunidade": true
+          },
+          {
+            "texto": "E não nos deixes cair em tentação,",
+            "comunidade": true
+          },
+          {
+            "texto": "mas livra-nos do mal;",
+            "comunidade": true
+          },
+          {
+            "texto": "pois teu é o Reino, o poder e a glória para sempre.",
+            "comunidade": true
+          },
+          {
+            "texto": "Amém.",
+            "comunidade": true,
+            "ref": "Mateus 6:9b–13"
+          }
+        ],
+        "suplica": [
+          {
+            "texto": "Mostra-nos, Senhor, a tua misericórdia",
+            "comunidade": false
+          },
+          {
+            "texto": "e concede-nos a tua salvação.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, guia aqueles que nos governam",
+            "comunidade": false
+          },
+          {
+            "texto": "e conduz-nos no caminho da justiça e da verdade.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, salva o teu povo",
+            "comunidade": false
+          },
+          {
+            "texto": "e abençoa a tua herança.",
+            "comunidade": true
+          },
+          {
+            "texto": "Concede paz em nosso tempo, ó Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "pois não há outro que lute por nós, senão somente tu, ó Deus.",
+            "comunidade": true
+          },
+          {
+            "texto": "Que os necessitados não sejam esquecidos, ó Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "nem a esperança dos pobres seja frustrada.",
+            "comunidade": true
+          },
+          {
+            "texto": "Cria em nós, ó Deus, um coração puro,",
+            "comunidade": false
+          },
+          {
+            "texto": "e não nos retires o teu Santo Espírito.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, ouve a nossa oração;",
+            "comunidade": false
+          },
+          {
+            "texto": "E chegue a ti o nosso clamor.",
+            "comunidade": true
+          }
+        ],
+        "oracoes_intercessao": [],
+        "coleta": [
+          {
+            "texto": "Deus Todo-Poderoso, que, após a criação do mundo, descansaste de todas as tuas obras e santificaste um dia de repouso para todas as tuas criaturas: concede que, deixando de lado todas as preocupações terrenas, estejamos devidamente preparados para o culto em teu santuário, e que o nosso descanso aqui na terra seja uma preparação para o repouso eterno prometido ao teu povo nos céus; mediante Jesus Cristo, nosso Senhor.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Deus Todo-Poderoso, que, após a criação do mundo, descansaste de todas as tuas obras e santificaste um dia de repouso para todas as tuas criaturas: concede que, deixando de lado todas as preocupações terrenas, estejamos devidamente preparados para o culto em teu santuário, e que o nosso descanso aqui na terra seja uma preparação para o repouso eterno prometido ao teu povo nos céus;",
+                "comunidade": false
+              },
+              {
+                "texto": " mediante Jesus Cristo, nosso Senhor.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          }
+        ]
+      },
+      "secoes_meta": {
+        "abertura": {
+          "titulo": "ABERTURA",
+          "notas": []
+        },
+        "invocacao": {
+          "titulo": "INVOCAÇÃO",
+          "notas": []
+        },
+        "confissao": {
+          "titulo": "CONFISSÃO DE PECADO E SÚPLICA PELO PERDÃO",
+          "notas": []
+        },
+        "leitura": {
+          "titulo": "LEITURA",
+          "notas": [
+            "tabelas de leitura, Ano I p. 30"
+          ]
+        },
+        "silencio_reflexao": {
+          "titulo": "SILÊNCIO E REFLEXÃO",
+          "notas": [
+            "um tempo de silêncio diante da Palavra lida"
+          ]
+        },
+        "salmo": {
+          "titulo": "SALMO",
+          "notas": [
+            "tabelas de leitura, Ano I p. 30"
+          ]
+        },
+        "gloria": {
+          "titulo": "GLORIA PATRI",
+          "notas": []
+        },
+        "aclamacao": {
+          "titulo": "ACLAMAÇÃO",
+          "notas": []
+        },
+        "cantico_louvor": {
+          "titulo": "CÂNTICO DE LOUVOR",
+          "notas": []
+        },
+        "benedictus": {
+          "titulo": "BENEDICTUS",
+          "notas": [
+            "texto na seção final, p. 48"
+          ]
+        },
+        "oracao_do_senhor": {
+          "titulo": "ORAÇÃO DO SENHOR",
+          "notas": []
+        },
+        "suplica": {
+          "titulo": "SÚPLICA DIURNA",
+          "notas": []
+        },
+        "oracoes_intercessao": {
+          "titulo": "ORAÇÕES DO CORAÇÃO E INTERCESSÃO",
+          "notas": [
+            "tempo reservado à oração pessoal e comunitária"
+          ]
+        },
+        "coleta": {
+          "titulo": "COLETA",
+          "notas": []
+        }
+      }
+    },
+    "domingo": {
+      "dia_semana": "domingo",
+      "genero": "Lecionário",
+      "titulo_cabecalho": "DOMINGO • DIA",
+      "pagina_inicio": 19,
+      "secoes": {
+        "abertura": [
+          {
+            "texto": "Alegrei-me quando me disseram:",
+            "comunidade": false
+          },
+          {
+            "texto": "“Vamos à Casa do Senhor.”",
+            "comunidade": true,
+            "ref": "Salmo 122:1"
+          }
+        ],
+        "invocacao": [
+          {
+            "texto": "Em nome do Pai, e do Filho, e do Espírito Santo.",
+            "comunidade": false
+          },
+          {
+            "texto": "Amém.",
+            "comunidade": true
+          },
+          {
+            "texto": "O nosso socorro está no nome do Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "que fez o céu e a terra.",
+            "comunidade": true,
+            "ref": "Salmo 124:8"
+          },
+          {
+            "texto": "Eu disse: “Confessarei ao Senhor as minhas transgressões”;",
+            "comunidade": false
+          },
+          {
+            "texto": "e tu perdoaste a iniquidade do meu pecado.",
+            "comunidade": true,
+            "ref": "Salmo 32:5"
+          }
+        ],
+        "confissao": [
+          {
+            "texto": "Deus Onipotente e Pai misericordioso, temos errado e nos apartado dos teus caminhos como ovelhas desgarradas. Temos seguido demasiadamente os caprichos e desejos de nossos próprios corações. Temos pecado contra as tuas santas leis. Deixamos de fazer o que devíamos ter feito e temos feito o que não devíamos fazer; e não há nada em nós que seja são. Tu, porém, ó Senhor, tem misericórdia de nós, pobres pecadores. Perdoa os que confessam as suas culpas. Restaura os que se arrependem, segundo as tuas promessas declaradas à humanidade em Cristo Jesus, nosso Senhor. E concede, por amor dele, ó Pai misericordioso, que, de hoje em diante, vivamos uma vida sóbria, justa e piedosa, para a glória do teu santo nome.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Deus Onipotente e Pai misericordioso, temos errado e nos apartado dos teus caminhos como ovelhas desgarradas. Temos seguido demasiadamente os caprichos e desejos de nossos próprios corações. Temos pecado contra as tuas santas leis. Deixamos de fazer o que devíamos ter feito e temos feito o que não devíamos fazer; e não há nada em nós que seja são. Tu, porém, ó Senhor, tem misericórdia de nós, pobres pecadores. Perdoa os que confessam as suas culpas. Restaura os que se arrependem, segundo as tuas promessas declaradas à humanidade em Cristo Jesus, nosso Senhor. E concede, por amor dele, ó Pai misericordioso, que, de hoje em diante, vivamos uma vida sóbria, justa e piedosa, para a glória do",
+                "comunidade": false
+              },
+              {
+                "texto": " teu santo nome.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          },
+          {
+            "texto": "Que o Pai das misericórdias nos purifique de nossos pecados, e restaure em nós a sua imagem para o louvor e glória de seu nome, por Cristo nosso Senhor.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Que o Pai das misericórdias nos purifique de nossos pecados, e restaure em nós a sua imagem para o louvor e glória de seu nome,",
+                "comunidade": false
+              },
+              {
+                "texto": " por Cristo nosso Senhor.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          }
+        ],
+        "leitura": [],
+        "silencio_reflexao": [],
+        "salmo": [],
+        "gloria": [
+          {
+            "texto": "Glória ao Pai e ao Filho e ao Espírito Santo;",
+            "comunidade": false
+          },
+          {
+            "texto": "como era no princípio, é agora e será sempre,",
+            "comunidade": true
+          },
+          {
+            "texto": "por todos os séculos. Amém.",
+            "comunidade": true
+          }
+        ],
+        "aclamacao": [
+          {
+            "texto": "Eu te darei graças entre os povos, ó Senhor!",
+            "comunidade": false
+          },
+          {
+            "texto": "Cantarei louvores a ti entre as nações.",
+            "comunidade": true,
+            "ref": "Salmo 108:3"
+          }
+        ],
+        "cantico_louvor": [],
+        "benedictus": [],
+        "oracao_do_senhor": [
+          {
+            "texto": "Senhor, lembra-te de nós em teu reino",
+            "comunidade": false
+          },
+          {
+            "texto": "e ensina-nos a orar.",
+            "comunidade": true,
+            "ref": "Lucas 23:42; Lucas 11:1"
+          },
+          {
+            "texto": "Pai nosso, que estás nos céus.",
+            "comunidade": true
+          },
+          {
+            "texto": "Santificado seja o teu Nome.",
+            "comunidade": true
+          },
+          {
+            "texto": "Venha o teu Reino.",
+            "comunidade": true
+          },
+          {
+            "texto": "Seja feita a tua vontade, assim na terra como no céu.",
+            "comunidade": true
+          },
+          {
+            "texto": "O pão nosso de cada dia nos dá hoje.",
+            "comunidade": true
+          },
+          {
+            "texto": "Perdoa-nos as nossas dívidas,",
+            "comunidade": true
+          },
+          {
+            "texto": "assim como nós perdoamos aos nossos devedores.",
+            "comunidade": true
+          },
+          {
+            "texto": "E não nos deixes cair em tentação,",
+            "comunidade": true
+          },
+          {
+            "texto": "mas livra-nos do mal;",
+            "comunidade": true
+          },
+          {
+            "texto": "pois teu é o Reino, o poder e a glória para sempre.",
+            "comunidade": true
+          },
+          {
+            "texto": "Amém.",
+            "comunidade": true,
+            "ref": "Mateus 6:9b–13"
+          }
+        ],
+        "suplica": [
+          {
+            "texto": "Mostra-nos, Senhor, a tua misericórdia",
+            "comunidade": false
+          },
+          {
+            "texto": "e concede-nos a tua salvação.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, guia aqueles que nos governam",
+            "comunidade": false
+          },
+          {
+            "texto": "e conduz-nos no caminho da justiça e da verdade.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, salva o teu povo",
+            "comunidade": false
+          },
+          {
+            "texto": "e abençoa a tua herança.",
+            "comunidade": true
+          },
+          {
+            "texto": "Concede paz em nosso tempo, ó Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "pois não há outro que lute por nós, senão somente tu, ó Deus.",
+            "comunidade": true
+          },
+          {
+            "texto": "Que os necessitados não sejam esquecidos, ó Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "nem a esperança dos pobres seja frustrada.",
+            "comunidade": true
+          },
+          {
+            "texto": "Cria em nós, ó Deus, um coração puro,",
+            "comunidade": false
+          },
+          {
+            "texto": "e não nos retires o teu Santo Espírito.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, ouve a nossa oração;",
+            "comunidade": false
+          },
+          {
+            "texto": "E chegue a ti o nosso clamor.",
+            "comunidade": true
+          }
+        ],
+        "oracoes_intercessao": [],
+        "coleta": [
+          {
+            "texto": "Ó Deus, nosso Rei, que, pela ressurreição de teu Filho Jesus Cristo no primeiro dia da semana, venceste o pecado, puseste a morte em fuga e nos deste a esperança da vida eterna: redime todos os nossos dias por essa vitória; perdoa os nossos pecados, afasta os nossos temores, dá-nos coragem para louvar-te e fazer a tua vontade, e fortalece-nos para aguardarmos a consumação do teu Reino no grande Dia final; mediante Jesus Cristo, nosso Senhor.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Ó Deus, nosso Rei, que, pela ressurreição de teu Filho Jesus Cristo no primeiro dia da semana, venceste o pecado, puseste a morte em fuga e nos deste a esperança da vida eterna: redime todos os nossos dias por essa vitória; perdoa os nossos pecados, afasta os nossos temores, dá-nos coragem para louvar-te e fazer a tua vontade, e fortalece-nos para aguardarmos a consumação do teu Reino no",
+                "comunidade": false
+              },
+              {
+                "texto": " grande Dia final; mediante Jesus Cristo, nosso Senhor.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          }
+        ]
+      },
+      "secoes_meta": {
+        "abertura": {
+          "titulo": "ABERTURA",
+          "notas": []
+        },
+        "invocacao": {
+          "titulo": "INVOCAÇÃO",
+          "notas": []
+        },
+        "confissao": {
+          "titulo": "CONFISSÃO DE PECADO E SÚPLICA PELO PERDÃO",
+          "notas": []
+        },
+        "leitura": {
+          "titulo": "LEITURA",
+          "notas": [
+            "tabelas de leitura, Ano I p. 30"
+          ]
+        },
+        "silencio_reflexao": {
+          "titulo": "SILÊNCIO E REFLEXÃO",
+          "notas": [
+            "um tempo de silêncio diante da Palavra lida"
+          ]
+        },
+        "salmo": {
+          "titulo": "SALMO",
+          "notas": [
+            "tabelas de leitura, Ano I p. 30"
+          ]
+        },
+        "gloria": {
+          "titulo": "GLORIA PATRI",
+          "notas": []
+        },
+        "aclamacao": {
+          "titulo": "ACLAMAÇÃO",
+          "notas": []
+        },
+        "cantico_louvor": {
+          "titulo": "CÂNTICO DE LOUVOR",
+          "notas": []
+        },
+        "benedictus": {
+          "titulo": "BENEDICTUS",
+          "notas": [
+            "texto na seção final, p. 48"
+          ]
+        },
+        "oracao_do_senhor": {
+          "titulo": "ORAÇÃO DO SENHOR",
+          "notas": []
+        },
+        "suplica": {
+          "titulo": "SÚPLICA DIURNA",
+          "notas": []
+        },
+        "oracoes_intercessao": {
+          "titulo": "ORAÇÕES DO CORAÇÃO E INTERCESSÃO",
+          "notas": [
+            "tempo reservado à oração pessoal e comunitária"
+          ]
+        },
+        "coleta": {
+          "titulo": "COLETA",
+          "notas": []
+        }
+      }
+    },
+    "segunda": {
+      "dia_semana": "segunda",
+      "genero": "Atos e Epístolas",
+      "titulo_cabecalho": "SEGUNDA-FEIRA • DIA",
+      "pagina_inicio": 22,
+      "secoes": {
+        "abertura": [
+          {
+            "texto": "As palavras dos meus lábios e o meditar do meu coração",
+            "comunidade": false
+          },
+          {
+            "texto": "sejam agradáveis na tua presença,",
+            "comunidade": true
+          },
+          {
+            "texto": "SENHOR, rocha minha e redentor meu!",
+            "comunidade": true,
+            "ref": "Salmo 19:14"
+          }
+        ],
+        "invocacao": [
+          {
+            "texto": "Em nome do Pai, e do Filho, e do Espírito Santo.",
+            "comunidade": false
+          },
+          {
+            "texto": "Amém.",
+            "comunidade": true
+          },
+          {
+            "texto": "O nosso socorro está no nome do Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "que fez o céu e a terra.",
+            "comunidade": true,
+            "ref": "Salmo 124:8"
+          },
+          {
+            "texto": "Eu disse: “Confessarei ao Senhor as minhas transgressões”;",
+            "comunidade": false
+          },
+          {
+            "texto": "e tu perdoaste a iniquidade do meu pecado.",
+            "comunidade": true,
+            "ref": "Salmo 32:5"
+          }
+        ],
+        "confissao": [
+          {
+            "texto": "Misericordioso Deus, confessamos que temos pecado contra ti em pensamentos, palavras e ações, obras e omissões. Não temos amado o Senhor de todo coração nem o próximo como a nós mesmos. Estamos verdadeiramente contritos e humildemente arrependidos. Por amor de teu Filho, nosso Senhor Jesus Cristo, tem misericórdia de nós. Que possamos contar com a tua bondade e trilhar teus caminhos para a glória do teu santo nome.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Misericordioso Deus, confessamos que temos pecado contra ti em pensamentos, palavras e ações, obras e omissões. Não temos amado o Senhor de todo coração nem o próximo como a nós mesmos. Estamos verdadeiramente contritos e humildemente arrependidos. Por amor de teu Filho, nosso Senhor Jesus Cristo, tem misericórdia de nós. Que possamos contar com a tua bondade e",
+                "comunidade": false
+              },
+              {
+                "texto": " trilhar teus caminhos para a glória do teu santo nome.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          },
+          {
+            "texto": "Concede ao teu povo fiel, ó Senhor misericordioso, perdão e paz; para que sejamos limpos de todos os nossos pecados e te sirvamos com a mente tranquila; por Jesus Cristo, nosso Senhor.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Concede ao teu povo fiel, ó Senhor misericordioso, perdão e paz; para que sejamos limpos de todos os nossos pecados e te sirvamos",
+                "comunidade": false
+              },
+              {
+                "texto": " com a mente tranquila; por Jesus Cristo, nosso Senhor.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          }
+        ],
+        "leitura": [],
+        "silencio_reflexao": [],
+        "salmo": [],
+        "gloria": [
+          {
+            "texto": "Glória ao Pai e ao Filho e ao Espírito Santo;",
+            "comunidade": false
+          },
+          {
+            "texto": "como era no princípio, é agora e será sempre,",
+            "comunidade": true
+          },
+          {
+            "texto": "por todos os séculos. Amém.",
+            "comunidade": true
+          }
+        ],
+        "aclamacao": [
+          {
+            "texto": "Cantarei para sempre as tuas misericórdias, ó Senhor;",
+            "comunidade": false
+          },
+          {
+            "texto": "os meus lábios proclamarão a todas",
+            "comunidade": true
+          },
+          {
+            "texto": "as gerações a tua fidelidade.",
+            "comunidade": true,
+            "ref": "Salmo 89:1"
+          }
+        ],
+        "cantico_louvor": [],
+        "benedictus": [],
+        "oracao_do_senhor": [
+          {
+            "texto": "Senhor, lembra-te de nós em teu reino",
+            "comunidade": false
+          },
+          {
+            "texto": "e ensina-nos a orar.",
+            "comunidade": true,
+            "ref": "Lucas 23:42; Lucas 11:1"
+          },
+          {
+            "texto": "Pai nosso, que estás nos céus.",
+            "comunidade": true
+          },
+          {
+            "texto": "Santificado seja o teu Nome.",
+            "comunidade": true
+          },
+          {
+            "texto": "Venha o teu Reino.",
+            "comunidade": true
+          },
+          {
+            "texto": "Seja feita a tua vontade, assim na terra como no céu.",
+            "comunidade": true
+          },
+          {
+            "texto": "O pão nosso de cada dia nos dá hoje.",
+            "comunidade": true
+          },
+          {
+            "texto": "Perdoa-nos as nossas dívidas,",
+            "comunidade": true
+          },
+          {
+            "texto": "assim como nós perdoamos aos nossos devedores.",
+            "comunidade": true
+          },
+          {
+            "texto": "E não nos deixes cair em tentação,",
+            "comunidade": true
+          },
+          {
+            "texto": "mas livra-nos do mal;",
+            "comunidade": true
+          },
+          {
+            "texto": "pois teu é o Reino, o poder e a glória para sempre.",
+            "comunidade": true
+          },
+          {
+            "texto": "Amém.",
+            "comunidade": true,
+            "ref": "Mateus 6:9b–13"
+          }
+        ],
+        "suplica": [
+          {
+            "texto": "Mostra-nos, Senhor, a tua misericórdia",
+            "comunidade": false
+          },
+          {
+            "texto": "e concede-nos a tua salvação.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, guia aqueles que nos governam",
+            "comunidade": false
+          },
+          {
+            "texto": "e conduz-nos no caminho da justiça e da verdade.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, salva o teu povo",
+            "comunidade": false
+          },
+          {
+            "texto": "e abençoa a tua herança.",
+            "comunidade": true
+          },
+          {
+            "texto": "Concede paz em nosso tempo, ó Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "pois não há outro que lute por nós, senão somente tu, ó Deus.",
+            "comunidade": true
+          },
+          {
+            "texto": "Que os necessitados não sejam esquecidos, ó Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "nem a esperança dos pobres seja frustrada.",
+            "comunidade": true
+          },
+          {
+            "texto": "Cria em nós, ó Deus, um coração puro,",
+            "comunidade": false
+          },
+          {
+            "texto": "e não nos retires o teu Santo Espírito.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, ouve a nossa oração;",
+            "comunidade": false
+          },
+          {
+            "texto": "E chegue a ti o nosso clamor.",
+            "comunidade": true
+          }
+        ],
+        "oracoes_intercessao": [],
+        "coleta": [
+          {
+            "texto": "Ó Deus, Rei eterno, cuja luz separa o dia da noite e transforma a sombra da morte em manhã: afasta para longe de nós todos os maus desejos, inclina os nossos corações a guardar a tua lei e guia os nossos pés pelo caminho da paz; para que, tendo cumprido alegremente a tua vontade durante o dia, possamos, ao chegar a noite, alegrarnos em render-te graças; mediante Jesus Cristo, nosso Senhor.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Ó Deus, Rei eterno, cuja luz separa o dia da noite e transforma a sombra da morte em manhã: afasta para longe de nós todos os maus desejos, inclina os nossos corações a guardar a tua lei e guia os nossos pés pelo caminho da paz; para que, tendo cumprido alegremente a tua vontade durante o dia, possamos, ao chegar a noite, alegrarnos em render-te graças; mediante Jesus Cristo, nosso",
+                "comunidade": false
+              },
+              {
+                "texto": " Senhor.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          }
+        ]
+      },
+      "secoes_meta": {
+        "abertura": {
+          "titulo": "ABERTURA",
+          "notas": []
+        },
+        "invocacao": {
+          "titulo": "INVOCAÇÃO",
+          "notas": []
+        },
+        "confissao": {
+          "titulo": "CONFISSÃO DE PECADO E SÚPLICA PELO PERDÃO",
+          "notas": []
+        },
+        "leitura": {
+          "titulo": "LEITURA",
+          "notas": [
+            "tabelas de leitura, Ano I p. 30"
+          ]
+        },
+        "silencio_reflexao": {
+          "titulo": "SILÊNCIO E REFLEXÃO",
+          "notas": [
+            "um tempo de silêncio diante da Palavra lida"
+          ]
+        },
+        "salmo": {
+          "titulo": "SALMO",
+          "notas": [
+            "tabelas de leitura, Ano I p. 30"
+          ]
+        },
+        "gloria": {
+          "titulo": "GLORIA PATRI",
+          "notas": []
+        },
+        "aclamacao": {
+          "titulo": "ACLAMAÇÃO",
+          "notas": []
+        },
+        "cantico_louvor": {
+          "titulo": "CÂNTICO DE LOUVOR",
+          "notas": []
+        },
+        "benedictus": {
+          "titulo": "BENEDICTUS",
+          "notas": [
+            "texto na seção final, p. 48"
+          ]
+        },
+        "oracao_do_senhor": {
+          "titulo": "ORAÇÃO DO SENHOR",
+          "notas": []
+        },
+        "suplica": {
+          "titulo": "SÚPLICA DIURNA",
+          "notas": []
+        },
+        "oracoes_intercessao": {
+          "titulo": "ORAÇÕES DO CORAÇÃO E INTERCESSÃO",
+          "notas": [
+            "tempo reservado à oração pessoal e comunitária"
+          ]
+        },
+        "coleta": {
+          "titulo": "COLETA",
+          "notas": []
+        }
+      }
+    },
+    "terca": {
+      "dia_semana": "terca",
+      "genero": "Os Profetas",
+      "titulo_cabecalho": "TERÇA-FEIRA • DIA",
+      "pagina_inicio": 25,
+      "secoes": {
+        "abertura": [
+          {
+            "texto": "Envia a tua luz e a tua verdade, para que me guiem",
+            "comunidade": false
+          },
+          {
+            "texto": "e me levem ao teu santo monte",
+            "comunidade": true
+          },
+          {
+            "texto": "e aos teus tabernáculos.",
+            "comunidade": true,
+            "ref": "Salmo 43:3"
+          }
+        ],
+        "invocacao": [
+          {
+            "texto": "Em nome do Pai, e do Filho, e do Espírito Santo.",
+            "comunidade": false
+          },
+          {
+            "texto": "Amém.",
+            "comunidade": true
+          },
+          {
+            "texto": "O nosso socorro está no nome do Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "que fez o céu e a terra.",
+            "comunidade": true,
+            "ref": "Salmo 124:8"
+          },
+          {
+            "texto": "Eu disse: “Confessarei ao Senhor as minhas transgressões”;",
+            "comunidade": false
+          },
+          {
+            "texto": "e tu perdoaste a iniquidade do meu pecado.",
+            "comunidade": true,
+            "ref": "Salmo 32:5"
+          }
+        ],
+        "confissao": [
+          {
+            "texto": "Deus muitíssimo misericordioso, Pai de nosso Senhor Jesus Cristo, nós confessamos que temos pecado em pensamento, palavra e ação. Não te amamos de todo o coração. Não amamos o próximo como a nós mesmos. Em tua misericórdia, perdoa o que fomos, emenda o que somos e dirige o que seremos; que possamos fazer o que é justo, amar sem interesses e caminhar humildemente contigo, nosso Deus.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Deus muitíssimo misericordioso, Pai de nosso Senhor Jesus Cristo, nós confessamos que temos pecado em pensamento, palavra e ação. Não te amamos de todo o coração. Não amamos o próximo como a nós mesmos. Em tua misericórdia, perdoa o que fomos, emenda o que somos e dirige o que seremos; que possamos fazer o que é justo, amar sem interesses e caminhar humildemente contigo,",
+                "comunidade": false
+              },
+              {
+                "texto": " nosso Deus.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          },
+          {
+            "texto": "Concede ao teu povo fiel, ó Senhor misericordioso, perdão e paz; para que sejamos limpos de todos os nossos pecados e te sirvamos com a mente tranquila; por Jesus Cristo, nosso Senhor.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Concede ao teu povo fiel, ó Senhor misericordioso, perdão e paz; para que sejamos limpos de todos os nossos pecados e te sirvamos",
+                "comunidade": false
+              },
+              {
+                "texto": " com a mente tranquila; por Jesus Cristo, nosso Senhor.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          }
+        ],
+        "leitura": [],
+        "silencio_reflexao": [],
+        "salmo": [],
+        "gloria": [
+          {
+            "texto": "Glória ao Pai e ao Filho e ao Espírito Santo;",
+            "comunidade": false
+          },
+          {
+            "texto": "como era no princípio, é agora e será sempre,",
+            "comunidade": true
+          },
+          {
+            "texto": "por todos os séculos. Amém.",
+            "comunidade": true
+          }
+        ],
+        "aclamacao": [
+          {
+            "texto": "Bem-aventurado é aquele cuja força está em ti,",
+            "comunidade": false
+          },
+          {
+            "texto": "em cujo coração se encontram",
+            "comunidade": true
+          },
+          {
+            "texto": "os caminhos aplanados!",
+            "comunidade": true,
+            "ref": "Salmo 84:5"
+          }
+        ],
+        "cantico_louvor": [],
+        "benedictus": [],
+        "oracao_do_senhor": [
+          {
+            "texto": "Senhor, lembra-te de nós em teu reino",
+            "comunidade": false
+          },
+          {
+            "texto": "e ensina-nos a orar.",
+            "comunidade": true,
+            "ref": "Lucas 23:42; Lucas 11:1"
+          },
+          {
+            "texto": "Pai nosso, que estás nos céus.",
+            "comunidade": true
+          },
+          {
+            "texto": "Santificado seja o teu Nome.",
+            "comunidade": true
+          },
+          {
+            "texto": "Venha o teu Reino.",
+            "comunidade": true
+          },
+          {
+            "texto": "Seja feita a tua vontade, assim na terra como no céu.",
+            "comunidade": true
+          },
+          {
+            "texto": "O pão nosso de cada dia nos dá hoje.",
+            "comunidade": true
+          },
+          {
+            "texto": "Perdoa-nos as nossas dívidas,",
+            "comunidade": true
+          },
+          {
+            "texto": "assim como nós perdoamos aos nossos devedores.",
+            "comunidade": true
+          },
+          {
+            "texto": "E não nos deixes cair em tentação,",
+            "comunidade": true
+          },
+          {
+            "texto": "mas livra-nos do mal;",
+            "comunidade": true
+          },
+          {
+            "texto": "pois teu é o Reino, o poder e a glória para sempre.",
+            "comunidade": true
+          },
+          {
+            "texto": "Amém.",
+            "comunidade": true,
+            "ref": "Mateus 6:9b–13"
+          }
+        ],
+        "suplica": [
+          {
+            "texto": "Mostra-nos, Senhor, a tua misericórdia",
+            "comunidade": false
+          },
+          {
+            "texto": "e concede-nos a tua salvação.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, guia aqueles que nos governam",
+            "comunidade": false
+          },
+          {
+            "texto": "e conduz-nos no caminho da justiça e da verdade.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, salva o teu povo",
+            "comunidade": false
+          },
+          {
+            "texto": "e abençoa a tua herança.",
+            "comunidade": true
+          },
+          {
+            "texto": "Concede paz em nosso tempo, ó Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "pois não há outro que lute por nós, senão somente tu, ó Deus.",
+            "comunidade": true
+          },
+          {
+            "texto": "Que os necessitados não sejam esquecidos, ó Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "nem a esperança dos pobres seja frustrada.",
+            "comunidade": true
+          },
+          {
+            "texto": "Cria em nós, ó Deus, um coração puro,",
+            "comunidade": false
+          },
+          {
+            "texto": "e não nos retires o teu Santo Espírito.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, ouve a nossa oração;",
+            "comunidade": false
+          },
+          {
+            "texto": "E chegue a ti o nosso clamor.",
+            "comunidade": true
+          }
+        ],
+        "oracoes_intercessao": [],
+        "coleta": [
+          {
+            "texto": "Ó Deus, autor da paz e amante da concórdia, conhecer-te é vida eterna, e servir-te é perfeita liberdade: defende-nos, teus humildes servos, de todos os ataques dos nossos inimigos; para que, confiando firmemente em tua proteção, não temamos o poder de quaisquer adversários; pelo poder de Jesus Cristo, nosso Senhor.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Ó Deus, autor da paz e amante da concórdia, conhecer-te é vida eterna, e servir-te é perfeita liberdade: defende-nos, teus humildes servos, de todos os ataques dos nossos inimigos; para que, confiando firmemente em tua proteção, não temamos o poder de quaisquer",
+                "comunidade": false
+              },
+              {
+                "texto": " adversários; pelo poder de Jesus Cristo, nosso Senhor.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          }
+        ]
+      },
+      "secoes_meta": {
+        "abertura": {
+          "titulo": "ABERTURA",
+          "notas": []
+        },
+        "invocacao": {
+          "titulo": "INVOCAÇÃO",
+          "notas": []
+        },
+        "confissao": {
+          "titulo": "CONFISSÃO DE PECADO E SÚPLICA PELO PERDÃO",
+          "notas": []
+        },
+        "leitura": {
+          "titulo": "LEITURA",
+          "notas": [
+            "tabelas de leitura, Ano I p. 30"
+          ]
+        },
+        "silencio_reflexao": {
+          "titulo": "SILÊNCIO E REFLEXÃO",
+          "notas": [
+            "um tempo de silêncio diante da Palavra lida"
+          ]
+        },
+        "salmo": {
+          "titulo": "SALMO",
+          "notas": [
+            "tabelas de leitura, Ano I p. 30"
+          ]
+        },
+        "gloria": {
+          "titulo": "GLORIA PATRI",
+          "notas": []
+        },
+        "aclamacao": {
+          "titulo": "ACLAMAÇÃO",
+          "notas": []
+        },
+        "cantico_louvor": {
+          "titulo": "CÂNTICO DE LOUVOR",
+          "notas": []
+        },
+        "benedictus": {
+          "titulo": "BENEDICTUS",
+          "notas": [
+            "texto na seção final, p. 48"
+          ]
+        },
+        "oracao_do_senhor": {
+          "titulo": "ORAÇÃO DO SENHOR",
+          "notas": []
+        },
+        "suplica": {
+          "titulo": "SÚPLICA DIURNA",
+          "notas": []
+        },
+        "oracoes_intercessao": {
+          "titulo": "ORAÇÕES DO CORAÇÃO E INTERCESSÃO",
+          "notas": [
+            "tempo reservado à oração pessoal e comunitária"
+          ]
+        },
+        "coleta": {
+          "titulo": "COLETA",
+          "notas": []
+        }
+      }
+    },
+    "quarta": {
+      "dia_semana": "quarta",
+      "genero": "Literatura Sapiencial",
+      "titulo_cabecalho": "QUARTA-FEIRA • DIA",
+      "pagina_inicio": 28,
+      "secoes": {
+        "abertura": [
+          {
+            "texto": "Levanto-me antes do amanhecer e clamo;",
+            "comunidade": false
+          },
+          {
+            "texto": "na tua palavra, espero confiante.",
+            "comunidade": true,
+            "ref": "Salmo 119:147"
+          }
+        ],
+        "invocacao": [
+          {
+            "texto": "Em nome do Pai, e do Filho, e do Espírito Santo.",
+            "comunidade": false
+          },
+          {
+            "texto": "Amém.",
+            "comunidade": true
+          },
+          {
+            "texto": "O nosso socorro está no nome do Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "que fez o céu e a terra.",
+            "comunidade": true,
+            "ref": "Salmo 124:8"
+          },
+          {
+            "texto": "Eu disse: “Confessarei ao Senhor as minhas transgressões”;",
+            "comunidade": false
+          },
+          {
+            "texto": "e tu perdoaste a iniquidade do meu pecado.",
+            "comunidade": true,
+            "ref": "Salmo 32:5"
+          }
+        ],
+        "confissao": [
+          {
+            "texto": "Deus Onipotente e Pai misericordioso, temos errado e nos apartado dos teus caminhos como ovelhas desgarradas. Temos seguido demasiadamente os caprichos e desejos de nossos próprios corações. Temos pecado contra as tuas santas leis. Deixamos de fazer o que devíamos ter feito e temos feito o que não devíamos fazer; e não há nada em nós que seja são. Tu, porém, ó Senhor, tem misericórdia de nós, pobres pecadores. Perdoa os que confessam as suas culpas. Restaura os que se arrependem, segundo as tuas promessas declaradas à humanidade em Cristo Jesus, nosso Senhor. E concede, por amor dele, ó Pai misericordioso, que, de hoje em diante, vivamos uma vida sóbria, justa e piedosa, para a glória do teu santo nome.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Deus Onipotente e Pai misericordioso, temos errado e nos apartado dos teus caminhos como ovelhas desgarradas. Temos seguido demasiadamente os caprichos e desejos de nossos próprios corações. Temos pecado contra as tuas santas leis. Deixamos de fazer o que devíamos ter feito e temos feito o que não devíamos fazer; e não há nada em nós que seja são. Tu, porém, ó Senhor, tem misericórdia de nós, pobres pecadores. Perdoa os que confessam as suas culpas. Restaura os que se arrependem, segundo as tuas promessas declaradas à humanidade em Cristo Jesus, nosso Senhor. E concede, por amor dele, ó Pai misericordioso, que, de hoje em diante, vivamos uma vida sóbria, justa e piedosa, para a glória do",
+                "comunidade": false
+              },
+              {
+                "texto": " teu santo nome.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          },
+          {
+            "texto": "Que o Pai das misericórdias nos purifique de nossos pecados, e restaure em nós a sua imagem para o louvor e glória de seu nome, por Cristo nosso Senhor.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Que o Pai das misericórdias nos purifique de nossos pecados, e restaure em nós a sua imagem para o louvor e glória de seu nome,",
+                "comunidade": false
+              },
+              {
+                "texto": " por Cristo nosso Senhor.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          }
+        ],
+        "leitura": [],
+        "silencio_reflexao": [],
+        "salmo": [],
+        "gloria": [
+          {
+            "texto": "Glória ao Pai e ao Filho e ao Espírito Santo;",
+            "comunidade": false
+          },
+          {
+            "texto": "como era no princípio, é agora e será sempre,",
+            "comunidade": true
+          },
+          {
+            "texto": "por todos os séculos. Amém.",
+            "comunidade": true
+          }
+        ],
+        "aclamacao": [
+          {
+            "texto": "O Senhor, porém, está no seu santo templo;",
+            "comunidade": false
+          },
+          {
+            "texto": "cale-se diante dele toda a terra",
+            "comunidade": true,
+            "ref": "Habacuque 2:20"
+          }
+        ],
+        "cantico_louvor": [],
+        "benedictus": [],
+        "oracao_do_senhor": [
+          {
+            "texto": "Senhor, lembra-te de nós em teu reino",
+            "comunidade": false
+          },
+          {
+            "texto": "e ensina-nos a orar.",
+            "comunidade": true,
+            "ref": "Lucas 23:42; Lucas 11:1"
+          },
+          {
+            "texto": "Pai nosso, que estás nos céus.",
+            "comunidade": true
+          },
+          {
+            "texto": "Santificado seja o teu Nome.",
+            "comunidade": true
+          },
+          {
+            "texto": "Venha o teu Reino.",
+            "comunidade": true
+          },
+          {
+            "texto": "Seja feita a tua vontade, assim na terra como no céu.",
+            "comunidade": true
+          },
+          {
+            "texto": "O pão nosso de cada dia nos dá hoje.",
+            "comunidade": true
+          },
+          {
+            "texto": "Perdoa-nos as nossas dívidas,",
+            "comunidade": true
+          },
+          {
+            "texto": "assim como nós perdoamos aos nossos devedores.",
+            "comunidade": true
+          },
+          {
+            "texto": "E não nos deixes cair em tentação,",
+            "comunidade": true
+          },
+          {
+            "texto": "mas livra-nos do mal;",
+            "comunidade": true
+          },
+          {
+            "texto": "pois teu é o Reino, o poder e a glória para sempre.",
+            "comunidade": true
+          },
+          {
+            "texto": "Amém.",
+            "comunidade": true,
+            "ref": "Mateus 6:9b–13"
+          }
+        ],
+        "suplica": [
+          {
+            "texto": "Mostra-nos, Senhor, a tua misericórdia",
+            "comunidade": false
+          },
+          {
+            "texto": "e concede-nos a tua salvação.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, guia aqueles que nos governam",
+            "comunidade": false
+          },
+          {
+            "texto": "e conduz-nos no caminho da justiça e da verdade.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, salva o teu povo",
+            "comunidade": false
+          },
+          {
+            "texto": "e abençoa a tua herança.",
+            "comunidade": true
+          },
+          {
+            "texto": "Concede paz em nosso tempo, ó Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "pois não há outro que lute por nós, senão somente tu, ó Deus.",
+            "comunidade": true
+          },
+          {
+            "texto": "Que os necessitados não sejam esquecidos, ó Senhor,",
+            "comunidade": false
+          },
+          {
+            "texto": "nem a esperança dos pobres seja frustrada.",
+            "comunidade": true
+          },
+          {
+            "texto": "Cria em nós, ó Deus, um coração puro,",
+            "comunidade": false
+          },
+          {
+            "texto": "e não nos retires o teu Santo Espírito.",
+            "comunidade": true
+          },
+          {
+            "texto": "Ó Senhor, ouve a nossa oração;",
+            "comunidade": false
+          },
+          {
+            "texto": "E chegue a ti o nosso clamor.",
+            "comunidade": true
+          }
+        ],
+        "oracoes_intercessao": [],
+        "coleta": [
+          {
+            "texto": "Ó Senhor, nosso Pai celestial, Deus Todo-Poderoso e eterno, que nos conduziste em segurança até o começo deste dia: defende-nos com teu grande poder, para que não caiamos em pecado nem corramos perigo algum; e para que, guiados por teu Espírito, façamos o que é justo aos teus olhos; mediante Jesus Cristo, nosso Senhor.Amém.",
+            "comunidade": false,
+            "segmentos": [
+              {
+                "texto": "Ó Senhor, nosso Pai celestial, Deus Todo-Poderoso e eterno, que nos conduziste em segurança até o começo deste dia: defende-nos com teu grande poder, para que não caiamos em pecado nem corramos perigo algum; e para que, guiados por teu Espírito, façamos o que é",
+                "comunidade": false
+              },
+              {
+                "texto": " justo aos teus olhos; mediante Jesus Cristo, nosso Senhor.",
+                "comunidade": false
+              },
+              {
+                "texto": "Amém.",
+                "comunidade": true
+              }
+            ]
+          }
+        ]
+      },
+      "secoes_meta": {
+        "abertura": {
+          "titulo": "ABERTURA",
+          "notas": []
+        },
+        "invocacao": {
+          "titulo": "INVOCAÇÃO",
+          "notas": []
+        },
+        "confissao": {
+          "titulo": "CONFISSÃO DE PECADO E SÚPLICA PELO PERDÃO",
+          "notas": []
+        },
+        "leitura": {
+          "titulo": "LEITURA",
+          "notas": [
+            "tabelas de leitura, Ano I p. 30"
+          ]
+        },
+        "silencio_reflexao": {
+          "titulo": "SILÊNCIO E REFLEXÃO",
+          "notas": [
+            "um tempo de silêncio diante da Palavra lida"
+          ]
+        },
+        "salmo": {
+          "titulo": "SALMO",
+          "notas": [
+            "tabelas de leitura, Ano I p. 30"
+          ]
+        },
+        "gloria": {
+          "titulo": "GLORIA PATRI",
+          "notas": []
+        },
+        "aclamacao": {
+          "titulo": "ACLAMAÇÃO",
+          "notas": []
+        },
+        "cantico_louvor": {
+          "titulo": "CÂNTICO DE LOUVOR",
+          "notas": []
+        },
+        "benedictus": {
+          "titulo": "BENEDICTUS",
+          "notas": [
+            "texto na seção final, p. 48"
+          ]
+        },
+        "oracao_do_senhor": {
+          "titulo": "ORAÇÃO DO SENHOR",
+          "notas": []
+        },
+        "suplica": {
+          "titulo": "SÚPLICA DIURNA",
+          "notas": []
+        },
+        "oracoes_intercessao": {
+          "titulo": "ORAÇÕES DO CORAÇÃO E INTERCESSÃO",
+          "notas": [
+            "tempo reservado à oração pessoal e comunitária"
+          ]
+        },
+        "coleta": {
+          "titulo": "COLETA",
+          "notas": []
+        }
+      }
+    }
+  },
+  "benedictus": {
+    "pagina": 49,
+    "introducao": "O Benedictus é o cântico do Evangelho do ofício do dia.",
+    "linhas": [
+      {
+        "texto": "Bendito seja o Senhor, o Deus de Israel; *",
+        "comunidade": false
+      },
+      {
+        "texto": "ele veio ao seu povo e o libertou.",
+        "comunidade": true
+      },
+      {
+        "texto": "Suscitou para nós um poderoso salvador, *",
+        "comunidade": false
+      },
+      {
+        "texto": "nascido da casa de Davi, seu servo.",
+        "comunidade": true
+      },
+      {
+        "texto": "Pela boca dos seus santos profetas prometeu,",
+        "comunidade": false
+      },
+      {
+        "texto": "desde os tempos antigos, que nos salvaria dos nossos inimigos, *",
+        "comunidade": false
+      },
+      {
+        "texto": "das mãos de todos os que nos odeiam.",
+        "comunidade": true
+      },
+      {
+        "texto": "Prometeu mostrar misericórdia aos nossos pais *",
+        "comunidade": false
+      },
+      {
+        "texto": "e lembrar-se da sua santa aliança.",
+        "comunidade": true
+      },
+      {
+        "texto": "Este foi o juramento que fez a Abraão, nosso pai: *",
+        "comunidade": false
+      },
+      {
+        "texto": "libertar-nos das mãos dos nossos inimigos,",
+        "comunidade": true
+      },
+      {
+        "texto": "para que o sirvamos sem medo, *",
+        "comunidade": false
+      },
+      {
+        "texto": "em santidade e justiça diante dele, todos os dias da nossa vida.",
+        "comunidade": true
+      },
+      {
+        "texto": "E tu, menino, serás chamado profeta do Altíssimo, *",
+        "comunidade": false
+      },
+      {
+        "texto": "pois irás adiante do Senhor para preparar o seu caminho,",
+        "comunidade": true
+      },
+      {
+        "texto": "para dar ao seu povo o conhecimento da salvação *",
+        "comunidade": false
+      },
+      {
+        "texto": "pelo perdão dos seus pecados.",
+        "comunidade": true
+      },
+      {
+        "texto": "Pela terna misericórdia do nosso Deus, *",
+        "comunidade": false
+      },
+      {
+        "texto": "o sol nascente do alto virá nos visitar,",
+        "comunidade": true
+      },
+      {
+        "texto": "para iluminar os que vivem nas trevas e na sombra da morte, *",
+        "comunidade": false
+      },
+      {
+        "texto": "e guiar os nossos pés no caminho da paz.",
+        "comunidade": true
+      }
+    ],
+    "fonte": "Cântico de Zacarias — Lucas 1:68–79, Ofício Diário & Lecionário, © 2026/2027 Rede Episcopal Brasileira"
+  }
+}
