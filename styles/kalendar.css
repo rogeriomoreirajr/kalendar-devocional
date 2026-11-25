@@ -347,10 +347,29 @@ button.botao-icone {
   margin: 0 auto;
 }
 
+/* Faixa das semanas: rola com o dedo e só para quando uma semana começa na quinta (encaixe).
+   Cada semana ocupa a largura toda da faixa; a rolagem horizontal é nativa (com impulso). */
+.caixas-janela {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin: 10px -4px 8px;
+  padding-bottom: 6px;
+}
+
+.caixas-janela::-webkit-scrollbar { display: none; }
+
+.caixas-trilho { display: flex; }
+
 .caixas {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
   display: flex;
   justify-content: space-between;
-  margin: 12px -4px 14px;
+  padding: 0 4px;
 }
 
 .caixa {
@@ -368,6 +387,13 @@ button.botao-icone {
   font-weight: 700;
   font-size: 8px;
   letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.caixa__num {
+  font-weight: 400;
+  opacity: 0.85;
+  letter-spacing: 0;
 }
 
 .caixa__disco {

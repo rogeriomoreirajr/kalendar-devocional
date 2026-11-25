@@ -392,19 +392,51 @@
     return '<section class="secao">' + rotuloSecao(titulo) + notas + corpo + fonte + "</section>";
   }
 
-  function caixasHtml(iso) {
+  function caixasHtml(iso, atual) {
+    if (atual === undefined) atual = iso;
     var ini = inicioDaSemana(iso);
     var html = "";
     for (var i = 0; i < 7; i++) {
       var d = somaDias(ini, i);
       if (!dentroDoCiclo(d)) continue;
       var chave = diaDaSemana(d);
-      html += '<a class="caixa' + (d === iso ? " caixa--atual" : "") + (diaFeito(d) ? " caixa--feito" : "") +
+      html += '<a class="caixa' + (d === atual ? " caixa--atual" : "") + (diaFeito(d) ? " caixa--feito" : "") +
         '" data-iso="' + d + '" href="#/dia/' + d + '" aria-label="' + esc(NOMES_DIAS[chave] + ", " + TEMAS[chave] + ", " + dataLonga(d)) + '"' +
-        (d === iso ? ' aria-current="date"' : "") + ">" +
-        '<span class="caixa__sigla">' + SIGLAS[chave] + '</span><span class="caixa__disco">' + ICONES_TEMA[chave] + "</span></a>";
+        (d === atual ? ' aria-current="date"' : "") + ">" +
+        '<span class="caixa__sigla">' + SIGLAS[chave] + ' <span class="caixa__num">' + parseInt(d.slice(8, 10), 10) + '</span></span><span class="caixa__disco">' + ICONES_TEMA[chave] + "</span></a>";
     }
     return html;
+  }
+
+  // Faixa de ícones: as 52 semanas lado a lado. Rola com o dedo (inclusive com impulso, passando por várias
+  // semanas) e só para quando uma semana começa na quinta (scroll-snap, no CSS). Tocar num ícone abre o dia.
+  function todasAsSemanasHtml(iso) {
+    var html = "";
+    for (var w = 0; w < 52; w++) {
+      var ini = somaDias(CICLO_INI, w * 7);
+      html += '<div class="caixas" role="group" aria-label="Semana de ' + esc(intervalo(ini, somaDias(ini, 6))) + '">' +
+        caixasHtml(ini, iso) + "</div>";
+    }
+    return html;
+  }
+
+  var larguraFaixa = 0;
+
+  function posicionarFaixa(iso) {
+    var janela = document.getElementById("faixa-semanas");
+    if (!janela) return;
+    larguraFaixa = janela.clientWidth;
+    janela.scrollLeft = Math.floor(difDias(CICLO_INI, iso) / 7) * larguraFaixa;
+    atualizarSetasFaixa();
+  }
+
+  function atualizarSetasFaixa() {
+    var j = document.getElementById("faixa-semanas");
+    if (!j) return;
+    var ant = document.querySelector('[data-act="semana-ant"]');
+    var prox = document.querySelector('[data-act="semana-prox"]');
+    if (ant) ant.disabled = j.scrollLeft <= 1;
+    if (prox) prox.disabled = j.scrollLeft >= j.scrollWidth - j.clientWidth - 1;
   }
 
   function semanaHtml(iso, e) {
@@ -533,7 +565,7 @@
         // setas de semana: só aparecem no desktop com mouse (no celular, arrasta-se a faixa)
         '<button type="button" class="caixas__seta caixas__seta--ant" data-act="semana-ant" aria-label="Semana anterior"' +
         (somaDias(iso, -7) < CICLO_INI ? " disabled" : "") + ">" + ICONE_SETA_ESQ + "</button>" +
-        '<div class="caixas" role="group" aria-label="Dias da semana e seus temas">' + caixasHtml(iso) + "</div>" +
+        '<div class="caixas-janela" id="faixa-semanas"><div class="caixas-trilho">' + todasAsSemanasHtml(iso) + "</div></div>" +
         '<button type="button" class="caixas__seta caixas__seta--prox" data-act="semana-prox" aria-label="Próxima semana"' +
         (somaDias(iso, 7) > CICLO_FIM ? " disabled" : "") + ">" + ICONE_SETA_DIR + "</button>" +
         "</div>" +
@@ -549,6 +581,7 @@
       html = linha + '<h1 class="titulo-livro">Ajustes</h1><p class="cabeca__sub">Do seu jeito, no seu ritmo.</p>';
     }
     el.innerHTML = html;
+    if (tipo === "dia") posicionarFaixa(iso);
   }
 
   function telaDia(iso) {
@@ -748,7 +781,7 @@
     if (r.tela === "dia" && !store.dicas.semana && window.matchMedia && matchMedia("(hover: none)").matches) {
       store.dicas.semana = true;
       salvar();
-      setTimeout(function () { aviso("Arraste a faixa de ícones para o lado para mudar de semana."); }, 900);
+      setTimeout(function () { aviso("Arraste a faixa de ícones para ver outras semanas; toque num ícone para abrir o dia."); }, 900);
     }
 
     // Ícone da tela atual fica em branco pleno
@@ -847,10 +880,9 @@
       if (campo) {
         try { campo.showPicker(); } catch (_) { campo.focus(); campo.click(); }
       }
-    } else if (acao === "semana-ant") {
-      irPara(somaDias(rotaAtual().iso, -7));
-    } else if (acao === "semana-prox") {
-      irPara(somaDias(rotaAtual().iso, 7));
+    } else if (acao === "semana-ant" || acao === "semana-prox") {
+      var faixa = document.getElementById("faixa-semanas");
+      if (faixa) faixa.scrollBy({ left: (acao === "semana-ant" ? -1 : 1) * faixa.clientWidth, behavior: "smooth" });
     } else if (acao === "prev") {
       irPara(somaDias(rotaAtual().iso, -1));
     } else if (acao === "next") {
@@ -902,25 +934,19 @@
     if (ev.key === "ArrowRight") irPara(somaDias(r.iso, 1));
   });
 
-  // Sem setas: arrastar a faixa de ícones para o lado muda de semana (mesmo dia da semana).
-  var toque = null;
+  // A rolagem da faixa é nativa (com impulso e encaixe na quinta). Aqui só mantemos as setas do desktop em dia
+  // e o alinhamento quando a tela muda de largura (por exemplo, ao girar o celular).
+  document.addEventListener("scroll", function (ev) {
+    if (ev.target && ev.target.id === "faixa-semanas") atualizarSetasFaixa();
+  }, { capture: true, passive: true });
 
-  document.addEventListener("touchstart", function (ev) {
-    var faixa = ev.target.closest && ev.target.closest(".caixas");
-    var t = ev.touches[0];
-    toque = faixa && t ? { x: t.clientX, y: t.clientY } : null;
-  }, { passive: true });
-
-  document.addEventListener("touchend", function (ev) {
-    if (!toque) return;
-    var t = ev.changedTouches[0];
-    var dx = t.clientX - toque.x;
-    var dy = t.clientY - toque.y;
-    toque = null;
-    var r = rotaAtual();
-    if (r.tela !== "dia" || Math.abs(dx) < 50 || Math.abs(dy) > 40) return;
-    irPara(somaDias(r.iso, dx < 0 ? 7 : -7));
-  }, { passive: true });
+  window.addEventListener("resize", function () {
+    var j = document.getElementById("faixa-semanas");
+    if (!j || !larguraFaixa) return;
+    var semana = Math.round(j.scrollLeft / larguraFaixa);
+    larguraFaixa = j.clientWidth;
+    j.scrollLeft = semana * larguraFaixa;
+  });
 
   window.addEventListener("hashchange", renderizar);
 
