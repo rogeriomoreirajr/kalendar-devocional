@@ -64,6 +64,10 @@
     terca: iconeTema('<path d="M12 3c.6 3.2-4 5.6-4 10a4 4 0 0 0 8 0c0-1.8-.9-3-1.8-4.1C13.2 8 12.6 5.6 12 3z"/><path d="M12 20a2 2 0 0 1-2-2c0-1.4 2-2.2 2-4 0 1.8 2 2.6 2 4a2 2 0 0 1-2 2z"/>'),
     quarta: iconeTema('<path d="M5 19C5 10.5 10 5 19.5 4.5 19 14 13.5 19 5 19z"/><path d="M5 19 14 10"/>')
   };
+  var ICONE_SETA_ESQ =
+    '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>';
+  var ICONE_SETA_DIR =
+    '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>';
   var ICONE_CHEVRON =
     '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
   var MARCA =
@@ -214,7 +218,7 @@
 
   // ------------------------------------------------------------------ armazenamento
 
-  var store = { lidos: {}, tema: null, config: {} };
+  var store = { lidos: {}, tema: null, config: {}, dicas: {} };
   var memoria = false;
 
   function carregar() {
@@ -226,6 +230,7 @@
           store.lidos = d.lidos && typeof d.lidos === "object" ? d.lidos : {};
           store.tema = d.tema === "claro" || d.tema === "escuro" ? d.tema : null;
           store.config = d.config && typeof d.config === "object" ? d.config : {};
+          store.dicas = d.dicas && typeof d.dicas === "object" ? d.dicas : {};
         }
       }
     } catch (e) { memoria = true; }
@@ -522,9 +527,17 @@
       // Topo mínimo: faixa de ícones (tema de cada dia, navegação), data que abre o calendário
       // e, embaixo, "TEMA · ANO I · ESTAÇÃO" (no domingo, o título do domingo no lugar da estação).
       var local = e.titulo_liturgico || e.estacao || "";
+      var voltarHoje = iso !== limitar(hojeReal()) ? '<a class="hoje-volta" href="#/">Hoje</a>' : "";
       html = '<div class="cabeca__centro">' +
+        '<div class="caixas-faixa">' +
+        // setas de semana: só aparecem no desktop com mouse (no celular, arrasta-se a faixa)
+        '<button type="button" class="caixas__seta caixas__seta--ant" data-act="semana-ant" aria-label="Semana anterior"' +
+        (somaDias(iso, -7) < CICLO_INI ? " disabled" : "") + ">" + ICONE_SETA_ESQ + "</button>" +
         '<div class="caixas" role="group" aria-label="Dias da semana e seus temas">' + caixasHtml(iso) + "</div>" +
-        '<div class="cabeca__data">' +
+        '<button type="button" class="caixas__seta caixas__seta--prox" data-act="semana-prox" aria-label="Próxima semana"' +
+        (somaDias(iso, 7) > CICLO_FIM ? " disabled" : "") + ">" + ICONE_SETA_DIR + "</button>" +
+        "</div>" +
+        '<div class="cabeca__data">' + voltarHoje +
         '<label class="sr-only" for="data-dia">Ir para a data</label>' +
         '<input class="sr-only" id="data-dia" type="date" value="' + iso + '" min="' + CICLO_INI + '" max="' + CICLO_FIM + '" tabindex="-1" />' +
         '<button type="button" class="data-botao" data-act="abrir-data" aria-label="Escolher outra data. Data atual: ' + esc(dataLonga(iso)) + '">' +
@@ -731,6 +744,13 @@
     else if (r.tela === "ajustes") telaAjustes();
     else telaDia(r.iso);
 
+    // Dica única, só em aparelho de toque: como mudar de semana (não há setas)
+    if (r.tela === "dia" && !store.dicas.semana && window.matchMedia && matchMedia("(hover: none)").matches) {
+      store.dicas.semana = true;
+      salvar();
+      setTimeout(function () { aviso("Arraste a faixa de ícones para o lado para mudar de semana."); }, 900);
+    }
+
     // Ícone da tela atual fica em branco pleno
     document.querySelectorAll(".topo__nav .botao-icone").forEach(function (a) {
       var alvo = a.getAttribute("href") === "#/" + r.tela;
@@ -827,6 +847,10 @@
       if (campo) {
         try { campo.showPicker(); } catch (_) { campo.focus(); campo.click(); }
       }
+    } else if (acao === "semana-ant") {
+      irPara(somaDias(rotaAtual().iso, -7));
+    } else if (acao === "semana-prox") {
+      irPara(somaDias(rotaAtual().iso, 7));
     } else if (acao === "prev") {
       irPara(somaDias(rotaAtual().iso, -1));
     } else if (acao === "next") {
