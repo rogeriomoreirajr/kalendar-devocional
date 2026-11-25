@@ -4,7 +4,7 @@
  * - Fontes do Google: guarda no cache na primeira vez e reaproveita depois.
  * As marcações de leitura ficam no localStorage e não passam por aqui.
  */
-const CACHE = "kalendar-v1";
+const CACHE = "kalendar-v2";
 const BASICOS = [
   "./",
   "./index.html",
@@ -34,8 +34,10 @@ self.addEventListener("fetch", (evento) => {
   const url = new URL(req.url);
 
   if (url.origin === self.location.origin) {
+    // "no-cache": sempre pergunta ao servidor se o arquivo mudou (o GitHub Pages deixa o navegador
+    // reaproveitar arquivos por 10 min, o que misturava index.html novo com app.js antigo).
     evento.respondWith(
-      fetch(req)
+      fetch(req, { cache: "no-cache" })
         .then((resp) => {
           if (resp.ok) {
             const copia = resp.clone();

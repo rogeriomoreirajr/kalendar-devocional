@@ -744,6 +744,11 @@
     });
 
   if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
+    // Se uma versão nova do app assumir o controle, recarrega uma vez para não ficar com arquivos misturados.
+    var tinhaControle = !!navigator.serviceWorker.controller;
+    navigator.serviceWorker.addEventListener("controllerchange", function () {
+      if (tinhaControle) location.reload();
+    });
     window.addEventListener("load", function () {
       navigator.serviceWorker.register("./sw.js").catch(function () { /* sem offline, tudo bem */ });
     });
