@@ -7,7 +7,8 @@ App devocional em formato de **livro de ofícios**, a partir do *Kalendar — Pl
 - **Caderneta**: calendário dos 364 dias, com os dias com a Palavra preenchidos e os outros em branco, sem destaque de "atraso".
 - **Links para a Bíblia**: cada referência (ex.: Mateus 11:2–10) abre o capítulo no **YouVersion** ou no **Bíblia Online**, à escolha, em **Ajustes**, junto com a versão (A21, ARA, ARC, NAA, NVI, NVT, NTLH e, no Bíblia Online, ACF). Padrão: YouVersion, A21. Também dá para desligar os links.
 - Exportar/importar as marcações (para passar do computador ao celular), em **Ajustes**.
-- Tema claro/escuro, cor de acento pela estação litúrgica, funciona offline e instala na tela inicial (PWA).
+- **Cor da estação litúrgica** em todo o app: papel tingido, cabeçalho em cor profunda e uma **barra do ano** no topo com as estações do Ano I. A estação de hoje desce e toca o cabeçalho; as outras ficam separadas por um vão discreto. As cores de cada estação (acento, cor profunda, tinta do papel e filete, no claro e no escuro) ficam no início de `styles/kalendar.css`.
+- Tema claro/escuro, funciona offline e instala na tela inicial (PWA).
 
 ## Estrutura
 

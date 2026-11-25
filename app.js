@@ -43,6 +43,10 @@
     nt: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12c3.2-4.8 7.5-5.8 11.5-3.6 1.8 1 3.3 2.3 4.5 3.6-1.2 1.3-2.7 2.6-4.5 3.6-4 2.2-8.3 1.2-11.5-3.6z"/><path d="M18.5 12l3-3M18.5 12l3 3"/></svg>',
     sl: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4c5.5 0 9.5 2.2 9.5 7.5V20"/><path d="M7 4v12.5C7 18.6 8.5 20 10.5 20h6"/><path d="M10.5 8v9M13.5 9.5V17"/></svg>'
   };
+  var ICONE_LUA =
+    '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4 8.2 8.2 0 1 0 20 14.2z"/></svg>';
+  var ICONE_SOL =
+    '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></svg>';
   var MARCA =
     '<svg class="caixa__marca" width="12" height="12" viewBox="0 0 12 12" fill="none" style="stroke:var(--on-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6.5l2.7 2.7L10 3.2"/></svg>';
 
@@ -419,8 +423,72 @@
 
   function definirEstacao(e) {
     document.documentElement.setAttribute("data-estacao", (e && e.estacao_css) || "advento");
-    var m = document.getElementById("marca-estacao");
-    if (m) m.textContent = "Ano I" + (e && e.estacao ? " · " + e.estacao : "");
+    corDaBarraDoSistema();
+  }
+
+  // Cor da barra de status do celular = tinta do papel da estação.
+  function corDaBarraDoSistema() {
+    var meta = document.querySelector('meta[name="theme-color"]');
+    var v = getComputedStyle(document.documentElement).getPropertyValue("--tint").trim();
+    if (meta && v) meta.setAttribute("content", v);
+  }
+
+  // Barra do ano: uma faixa por estação (consecutivas, pela cor); a de hoje desce até o cabeçalho.
+  var segmentosAno = null;
+
+  function segmentosDoAno() {
+    if (segmentosAno) return segmentosAno;
+    segmentosAno = [];
+    plano.entradas.forEach(function (e) {
+      var ult = segmentosAno[segmentosAno.length - 1];
+      if (ult && ult.css === e.estacao_css) {
+        ult.dias++;
+        ult.fim = e.data_iso;
+        if (ult.nomes.indexOf(e.estacao) === -1) ult.nomes.push(e.estacao);
+      } else {
+        segmentosAno.push({ css: e.estacao_css, dias: 1, ini: e.data_iso, fim: e.data_iso, nomes: [e.estacao] });
+      }
+    });
+    return segmentosAno;
+  }
+
+  function barraAno(iso) {
+    var el = document.getElementById("barra-ano");
+    if (!el) return;
+    var atualNome = "";
+    el.innerHTML = segmentosDoAno().map(function (s) {
+      var atual = iso >= s.ini && iso <= s.fim;
+      if (atual) atualNome = s.nomes.join(" · ");
+      return '<span class="ano__seg ano__seg--' + esc(s.css) + (atual ? " ano__seg--atual" : "") +
+        '" style="flex:' + s.dias + ' 1 0" title="' + esc(s.nomes.join(" · ")) + '"></span>';
+    }).join("");
+    el.setAttribute("aria-label", "Dia " + (difDias(CICLO_INI, iso) + 1) + " de 364 · " + atualNome);
+  }
+
+  // Cabeçalho em cor: linha da estação, título e, no dia, os quadradinhos da semana e a data.
+  function cabeca(tipo, iso, e) {
+    var el = document.getElementById("cabeca-conteudo");
+    if (!el) return;
+    var ref = e || porData[limitar(hojeReal())];
+    var linha = '<div class="cabeca__linha"><span>Ano I · ' + esc(ref.estacao || "") + "</span><span>Dia " +
+      (difDias(CICLO_INI, ref.data_iso) + 1) + " de 364</span></div>";
+    var html;
+    if (tipo === "dia") {
+      var sub = e.titulo_liturgico || e.estacao || "";
+      html = linha + '<h1 class="titulo-livro">Ofício Diário</h1>' +
+        '<div class="caixas" role="group" aria-label="Dias da semana com a Palavra">' + caixasHtml(iso) + "</div>" +
+        '<div class="dia-nav">' +
+        '<button type="button" class="dia-nav__seta" data-act="prev" aria-label="Dia anterior"' + (iso <= CICLO_INI ? " disabled" : "") + ">‹</button>" +
+        '<label class="sr-only" for="data-dia">Ir para a data</label>' +
+        '<input class="dia-nav__data" id="data-dia" type="date" value="' + iso + '" min="' + CICLO_INI + '" max="' + CICLO_FIM + '" />' +
+        '<button type="button" class="dia-nav__seta" data-act="next" aria-label="Próximo dia"' + (iso >= CICLO_FIM ? " disabled" : "") + ">›</button></div>" +
+        '<p class="cabeca__sub">' + esc(dataExtenso(iso)) + (sub ? "<br>" + esc(sub) : "") + "</p>";
+    } else if (tipo === "caderneta") {
+      html = linha + '<h1 class="titulo-livro">Caderneta</h1><p class="cabeca__sub">Os dias em que você esteve com a Palavra.</p>';
+    } else {
+      html = linha + '<h1 class="titulo-livro">Ajustes</h1><p class="cabeca__sub">Do seu jeito, no seu ritmo.</p>';
+    }
+    el.innerHTML = html;
   }
 
   function telaDia(iso) {
@@ -439,21 +507,14 @@
       secoes = '<p class="nota">O ofício deste dia não consta em data/liturgias_semana.json.</p>';
     }
 
-    var sub = e.titulo_liturgico || e.estacao || "";
+    barraAno(iso);
+    cabeca("dia", iso, e);
     app.innerHTML =
       '<div class="livro">' +
       '<article class="pagina pagina--oficio">' +
-      '<div class="oficio-topo"><h1 class="titulo-livro">Ofício Diário</h1>' +
-      '<div class="caixas" role="group" aria-label="Dias da semana com a Palavra">' + caixasHtml(iso) + "</div></div>" +
-      '<div class="dia-nav">' +
-      '<button type="button" class="dia-nav__seta" data-act="prev" aria-label="Dia anterior"' + (iso <= CICLO_INI ? " disabled" : "") + ">‹</button>" +
-      '<label class="sr-only" for="data-dia">Ir para a data</label>' +
-      '<input class="dia-nav__data" id="data-dia" type="date" value="' + iso + '" min="' + CICLO_INI + '" max="' + CICLO_FIM + '" />' +
-      '<button type="button" class="dia-nav__seta" data-act="next" aria-label="Próximo dia"' + (iso >= CICLO_FIM ? " disabled" : "") + ">›</button></div>" +
-      '<p class="data-extenso">' + esc(dataExtenso(iso)) + (sub ? " · " + esc(sub) : "") + "</p>" +
       secoes +
       '<div class="fecho"><p>Marque quando quiser. Sem pressa.</p>' +
-      '<button type="button" class="botao-contorno" id="btn-dia" data-act="toggle-dia" data-iso="' + iso + '"></button></div>' +
+      '<button type="button" class="botao-solido" id="btn-dia" data-act="toggle-dia" data-iso="' + iso + '"></button></div>' +
       "</article>" +
       '<aside class="pagina pagina--semana" aria-label="Lecionário da semana">' + semanaHtml(iso, e) + "</aside>" +
       "</div>";
@@ -486,10 +547,10 @@
     }
 
     var cab = ORDEM_SEMANA.map(function (k) { return "<span>" + SIGLAS[k] + "</span>"; }).join("");
+    barraAno(limitar(hoje));
+    cabeca("caderneta");
     app.innerHTML =
       '<div class="caderneta"><article class="pagina caderneta__pagina">' +
-      '<h1 class="titulo-livro">Caderneta</h1>' +
-      '<p class="caderneta__sub">Os dias em que você esteve com a Palavra.</p>' +
       '<div class="cad-cabecalho" aria-hidden="true">' + cab + "</div>" + semanas +
       '<div class="cad-resumo"><p id="cad-resumo-1"></p><p>Os outros dias continuam abertos para você, quando quiser voltar a eles.</p></div>' +
       '<div class="cad-acoes">' +
@@ -518,10 +579,10 @@
       return '<option value="' + t[0] + '"' + (tema === t[0] ? " selected" : "") + ">" + t[1] + "</option>";
     }).join("");
 
+    barraAno(limitar(hojeReal()));
+    cabeca("ajustes");
     app.innerHTML =
       '<div class="caderneta"><article class="pagina caderneta__pagina">' +
-      '<h1 class="titulo-livro">Ajustes</h1>' +
-      '<p class="caderneta__sub">Do seu jeito, no seu ritmo.</p>' +
 
       '<section class="ajuste" aria-labelledby="aj-links">' +
       '<div class="secao__rotulo"><h2 class="secao__titulo" id="aj-links">Abrir as leituras em</h2></div>' +
@@ -615,6 +676,12 @@
     if (r.tela === "caderneta") telaCaderneta();
     else if (r.tela === "ajustes") telaAjustes();
     else telaDia(r.iso);
+
+    // Ícone da tela atual fica em branco pleno
+    document.querySelectorAll(".topo__nav .botao-icone").forEach(function (a) {
+      var alvo = a.getAttribute("href") === "#/" + r.tela;
+      if (alvo) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
   }
 
   function irPara(iso) { location.hash = "#/dia/" + limitar(iso); }
@@ -633,9 +700,14 @@
   function aplicarTema(t) {
     document.documentElement.setAttribute("data-theme", t === "escuro" ? "dark" : "light");
     var b = document.getElementById("btn-tema");
-    if (b) b.textContent = t === "escuro" ? "Claro" : "Escuro";
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", t === "escuro" ? "#1a1715" : "#f1ece2");
+    if (b) {
+      // Mostra o ícone do tema para o qual o botão leva: sol no escuro, lua no claro.
+      var nome = t === "escuro" ? "Tema claro" : "Tema escuro";
+      b.setAttribute("aria-label", nome);
+      b.setAttribute("title", nome);
+      b.innerHTML = t === "escuro" ? ICONE_SOL : ICONE_LUA;
+    }
+    corDaBarraDoSistema();
   }
   function temaAtual() {
     return document.documentElement.getAttribute("data-theme") === "dark" ? "escuro" : "claro";

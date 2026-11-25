@@ -4,7 +4,7 @@
  * - Fontes do Google: guarda no cache na primeira vez e reaproveita depois.
  * As marcações de leitura ficam no localStorage e não passam por aqui.
  */
-const CACHE = "kalendar-v2";
+const CACHE = "kalendar-v3";
 const BASICOS = [
   "./",
   "./index.html",
