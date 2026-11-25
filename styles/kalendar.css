@@ -289,12 +289,6 @@ button.botao-icone {
   color: var(--on-deep-soft);
 }
 
-.cabeca__linha span:last-child {
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: none;
-}
-
 .titulo-livro {
   margin: 0;
   font-weight: 400;
@@ -319,13 +313,18 @@ button.botao-icone {
   color: var(--on-deep-soft);
 }
 
-/* Quadradinhos da semana (como QUI SEX SÁB DOM do livro), em creme sobre a cor profunda */
+/* Faixa da semana: o tema de cada dia (ícone) é também a navegação.
+   Feito = disco cheio; hoje (o dia aberto) = anel; pendente = neutro, sem alerta. */
+
+.cabeca__centro {
+  max-width: 440px;
+  margin: 0 auto;
+}
 
 .caixas {
   display: flex;
   justify-content: space-between;
-  max-width: 440px;
-  margin: 14px 0 12px;
+  margin: 12px -4px 14px;
 }
 
 .caixa {
@@ -333,10 +332,9 @@ button.botao-icone {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  padding: 4px 2px 6px;
+  gap: 5px;
   text-decoration: none;
-  color: var(--on-deep-soft);
+  color: rgba(246, 241, 231, 0.62);
 }
 
 .caixa__sigla {
@@ -346,55 +344,71 @@ button.botao-icone {
   letter-spacing: 0.08em;
 }
 
-.caixa__quadro {
-  width: 18px;
-  height: 18px;
-  border: 1.5px solid currentColor;
+.caixa__disco {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(246, 241, 231, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
 .caixa--atual { color: var(--on-deep); }
-.caixa--atual .caixa__quadro { outline: 1.5px solid var(--on-deep); outline-offset: 2px; }
 
-.caixa--feito .caixa__quadro { background: var(--on-deep); border-color: var(--on-deep); }
-.caixa .caixa__marca { display: none; stroke: var(--deep) !important; }
-.caixa--feito .caixa__marca { display: block; }
+.caixa--atual .caixa__disco {
+  border-color: var(--on-deep);
+  outline: 1.5px solid var(--on-deep);
+  outline-offset: 2px;
+}
 
-/* Navegação entre dias (no cabeçalho) */
+.caixa--feito .caixa__disco {
+  background: var(--on-deep);
+  border-color: var(--on-deep);
+  color: var(--deep);
+}
 
-.dia-nav {
+.caixa:hover .caixa__disco { border-color: var(--on-deep); }
+
+/* Data centralizada: abre o calendário; embaixo, "TEMA · ANO I · ESTAÇÃO" */
+
+.cabeca__data { display: flex; justify-content: center; }
+
+.data-botao {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 4px;
-  margin: 0 -10px 8px;
-}
-
-.dia-nav__seta {
-  width: 44px;
-  height: 44px;
+  min-height: 44px;
+  padding: 6px 12px;
   background: transparent;
   border: 0;
-  cursor: pointer;
-  font-size: 22px;
-  line-height: 1;
   color: var(--on-deep);
+  font: inherit;
+  cursor: pointer;
 }
 
-.dia-nav__seta:disabled { color: var(--on-deep-soft); opacity: 0.4; cursor: default; }
+.data-botao__texto {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 17px;
+  white-space: nowrap;
+}
 
-.dia-nav__data {
+.data-botao__texto svg { color: rgba(246, 241, 231, 0.7); }
+
+.data-botao__linha {
   font-family: var(--sans);
-  font-weight: 500;
-  font-size: 13px;
-  color: var(--on-deep);
-  color-scheme: dark;
-  background: transparent;
-  border: 1px solid rgba(246, 241, 231, 0.45);
-  border-radius: 2px;
-  min-height: 44px;
-  padding: 0 10px;
+  font-weight: 600;
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  text-align: center;
+  text-wrap: balance;
+  color: var(--on-deep-soft);
 }
 
 /* ---------- Livro ---------- */

@@ -3,7 +3,8 @@
 App devocional em formato de **livro de ofícios**, a partir do *Kalendar — Plano Bienal de Leitura Bíblica (Ano I · Edição Compacta · DIA)*. Mostra o ofício diário (semana de quinta a quarta), as leituras e o salmo do dia, e permite **marcar o que já foi lido** — sem metas, sem sequências, sem cobrança.
 
 - Abre no dia de hoje (ou em 26/11/2026, antes de o ciclo começar).
-- Marcação por leitura (A.T., Epístola, Evangelho, Salmo) e por dia; guardada **só no aparelho** (`localStorage`).
+- **Topo mínimo:** uma faixa de sete ícones, um por dia da semana (quinta a quarta), cada um com o **tema do dia** (A Torá, Evangelhos, História de Israel, Dia do Senhor, Atos e Epístolas, Os Profetas, Literatura Sapiencial). Tocar num ícone abre aquele dia; arrastar a faixa para o lado muda de semana; tocar na data abre o calendário. Embaixo da data: "TEMA · ANO I · ESTAÇÃO".
+- Marcação por leitura (A.T., Epístola, Evangelho, Salmo) e por dia; guardada **só no aparelho** (`localStorage`). No topo, o dia lido vira um disco cheio; o dia não lido fica neutro.
 - **Caderneta**: calendário dos 364 dias, com os dias com a Palavra preenchidos e os outros em branco, sem destaque de "atraso".
 - **Links para a Bíblia**: cada referência (ex.: Mateus 11:2–10) abre o capítulo no **YouVersion** ou no **Bíblia Online**, à escolha, em **Ajustes**, junto com a versão (A21, ARA, ARC, NAA, NVI, NVT, NTLH e, no Bíblia Online, ACF). Padrão: YouVersion, A21. Também dá para desligar os links.
 - Exportar/importar as marcações (para passar do computador ao celular), em **Ajustes**.

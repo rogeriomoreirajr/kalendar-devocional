@@ -47,6 +47,25 @@
     '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4 8.2 8.2 0 1 0 20 14.2z"/></svg>';
   var ICONE_SOL =
     '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></svg>';
+  // Tema de cada dia da semana (gênero das Escrituras no Kalendar); no domingo o nome exibido é "Dia do Senhor".
+  var TEMAS = {
+    quinta: "A Torá", sexta: "Evangelhos", sabado: "História de Israel", domingo: "Dia do Senhor",
+    segunda: "Atos e Epístolas", terca: "Os Profetas", quarta: "Literatura Sapiencial"
+  };
+  function iconeTema(caminhos) {
+    return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + caminhos + "</svg>";
+  }
+  var ICONES_TEMA = {
+    quinta: iconeTema('<path d="M4.5 20V9a3.5 3.5 0 0 1 7 0v11z"/><path d="M12.5 20V9a3.5 3.5 0 0 1 7 0v11z"/><path d="M7 12.5h2M15 12.5h2M7 15.5h2M15 15.5h2"/>'),
+    sexta: iconeTema('<path d="M12 3v18M7 9h10"/>'),
+    sabado: iconeTema('<path d="M2.5 19.5 12 4.5l9.5 15z"/><path d="M9.5 19.5v-3.5a2.5 2.5 0 0 1 5 0v3.5"/>'),
+    domingo: iconeTema('<path d="M3 18.5h18"/><path d="M7 18.5a5 5 0 0 1 10 0"/><path d="M12 6v3M5.2 9.5l2 2M18.8 9.5l-2 2"/>'),
+    segunda: iconeTema('<rect x="3.5" y="6" width="17" height="12.5" rx="1.5"/><path d="M4 7.5l8 6 8-6"/>'),
+    terca: iconeTema('<path d="M12 3c.6 3.2-4 5.6-4 10a4 4 0 0 0 8 0c0-1.8-.9-3-1.8-4.1C13.2 8 12.6 5.6 12 3z"/><path d="M12 20a2 2 0 0 1-2-2c0-1.4 2-2.2 2-4 0 1.8 2 2.6 2 4a2 2 0 0 1-2 2z"/>'),
+    quarta: iconeTema('<path d="M5 19C5 10.5 10 5 19.5 4.5 19 14 13.5 19 5 19z"/><path d="M5 19 14 10"/>')
+  };
+  var ICONE_CHEVRON =
+    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
   var MARCA =
     '<svg class="caixa__marca" width="12" height="12" viewBox="0 0 12 12" fill="none" style="stroke:var(--on-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6.5l2.7 2.7L10 3.2"/></svg>';
 
@@ -167,6 +186,11 @@
   function dataExtenso(iso) {
     var p = iso.split("-");
     return NOMES_DIAS[diaDaSemana(iso)] + ", " + +p[2] + " de " + MESES[+p[1] - 1] + " de " + p[0];
+  }
+  // "29 de novembro de 2026" (o dia da semana já aparece na faixa de ícones)
+  function dataLonga(iso) {
+    var p = iso.split("-");
+    return (+p[2] === 1 ? "1º" : +p[2]) + " de " + MESES[+p[1] - 1] + " de " + p[0];
   }
   function curta(iso) { var p = iso.split("-"); return +p[2] + " " + MESES_ABREV[+p[1] - 1]; }
   function intervalo(a, b) {
@@ -371,8 +395,9 @@
       if (!dentroDoCiclo(d)) continue;
       var chave = diaDaSemana(d);
       html += '<a class="caixa' + (d === iso ? " caixa--atual" : "") + (diaFeito(d) ? " caixa--feito" : "") +
-        '" data-iso="' + d + '" href="#/dia/' + d + '" aria-label="' + esc(dataExtenso(d)) + '"' + (d === iso ? ' aria-current="date"' : "") + ">" +
-        '<span class="caixa__sigla">' + SIGLAS[chave] + '</span><span class="caixa__quadro">' + MARCA + "</span></a>";
+        '" data-iso="' + d + '" href="#/dia/' + d + '" aria-label="' + esc(NOMES_DIAS[chave] + ", " + TEMAS[chave] + ", " + dataLonga(d)) + '"' +
+        (d === iso ? ' aria-current="date"' : "") + ">" +
+        '<span class="caixa__sigla">' + SIGLAS[chave] + '</span><span class="caixa__disco">' + ICONES_TEMA[chave] + "</span></a>";
     }
     return html;
   }
@@ -470,19 +495,20 @@
     var el = document.getElementById("cabeca-conteudo");
     if (!el) return;
     var ref = e || porData[limitar(hojeReal())];
-    var linha = '<div class="cabeca__linha"><span>Ano I · ' + esc(ref.estacao || "") + "</span><span>Dia " +
-      (difDias(CICLO_INI, ref.data_iso) + 1) + " de 364</span></div>";
+    var linha = '<div class="cabeca__linha"><span>Ano I · ' + esc(ref.estacao || "") + "</span></div>";
     var html;
     if (tipo === "dia") {
-      var sub = e.titulo_liturgico || e.estacao || "";
-      html = linha + '<h1 class="titulo-livro">Ofício Diário</h1>' +
-        '<div class="caixas" role="group" aria-label="Dias da semana com a Palavra">' + caixasHtml(iso) + "</div>" +
-        '<div class="dia-nav">' +
-        '<button type="button" class="dia-nav__seta" data-act="prev" aria-label="Dia anterior"' + (iso <= CICLO_INI ? " disabled" : "") + ">‹</button>" +
+      // Topo mínimo: faixa de ícones (tema de cada dia, navegação), data que abre o calendário
+      // e, embaixo, "TEMA · ANO I · ESTAÇÃO" (no domingo, o título do domingo no lugar da estação).
+      var local = e.titulo_liturgico || e.estacao || "";
+      html = '<div class="cabeca__centro">' +
+        '<div class="caixas" role="group" aria-label="Dias da semana e seus temas">' + caixasHtml(iso) + "</div>" +
+        '<div class="cabeca__data">' +
         '<label class="sr-only" for="data-dia">Ir para a data</label>' +
-        '<input class="dia-nav__data" id="data-dia" type="date" value="' + iso + '" min="' + CICLO_INI + '" max="' + CICLO_FIM + '" />' +
-        '<button type="button" class="dia-nav__seta" data-act="next" aria-label="Próximo dia"' + (iso >= CICLO_FIM ? " disabled" : "") + ">›</button></div>" +
-        '<p class="cabeca__sub">' + esc(dataExtenso(iso)) + (sub ? "<br>" + esc(sub) : "") + "</p>";
+        '<input class="sr-only" id="data-dia" type="date" value="' + iso + '" min="' + CICLO_INI + '" max="' + CICLO_FIM + '" tabindex="-1" />' +
+        '<button type="button" class="data-botao" data-act="abrir-data" aria-label="Escolher outra data. Data atual: ' + esc(dataLonga(iso)) + '">' +
+        '<span class="data-botao__texto">' + esc(dataLonga(iso)) + ICONE_CHEVRON + "</span>" +
+        '<span class="data-botao__linha">' + esc(TEMAS[e.dia_semana]) + " · Ano I · " + esc(local) + "</span></button></div></div>";
     } else if (tipo === "caderneta") {
       html = linha + '<h1 class="titulo-livro">Caderneta</h1><p class="cabeca__sub">Os dias em que você esteve com a Palavra.</p>';
     } else {
@@ -768,6 +794,11 @@
       var iso = el.getAttribute("data-iso");
       definirDia(iso, itensDoDia(porData[iso]).length, !diaFeito(iso));
       atualizarMarcas();
+    } else if (acao === "abrir-data") {
+      var campo = document.getElementById("data-dia");
+      if (campo) {
+        try { campo.showPicker(); } catch (_) { campo.focus(); campo.click(); }
+      }
     } else if (acao === "prev") {
       irPara(somaDias(rotaAtual().iso, -1));
     } else if (acao === "next") {
@@ -818,6 +849,26 @@
     if (ev.key === "ArrowLeft") irPara(somaDias(r.iso, -1));
     if (ev.key === "ArrowRight") irPara(somaDias(r.iso, 1));
   });
+
+  // Sem setas: arrastar a faixa de ícones para o lado muda de semana (mesmo dia da semana).
+  var toque = null;
+
+  document.addEventListener("touchstart", function (ev) {
+    var faixa = ev.target.closest && ev.target.closest(".caixas");
+    var t = ev.touches[0];
+    toque = faixa && t ? { x: t.clientX, y: t.clientY } : null;
+  }, { passive: true });
+
+  document.addEventListener("touchend", function (ev) {
+    if (!toque) return;
+    var t = ev.changedTouches[0];
+    var dx = t.clientX - toque.x;
+    var dy = t.clientY - toque.y;
+    toque = null;
+    var r = rotaAtual();
+    if (r.tela !== "dia" || Math.abs(dx) < 50 || Math.abs(dy) > 40) return;
+    irPara(somaDias(r.iso, dx < 0 ? 7 : -7));
+  }, { passive: true });
 
   window.addEventListener("hashchange", renderizar);
 
