@@ -92,6 +92,9 @@ ESTACAO_CSS = {
     "sexta-feira santa e sabado santo": "quaresma",
     "pascoa": "pascoa",
     "tempo da trindade": "tempo-comum",
+    # Edição corrigida do Kalendar: Epifania vai até 9/2, e o tempo depois da Páscoa muda de nome
+    "pentecostes": "pentecostes",
+    "tempo do reino": "tempo-comum",
 }
 
 RE_DIA_OFICIO = re.compile(

@@ -5,7 +5,7 @@
       "dia_semana": "quinta",
       "genero": "A Torá",
       "titulo_cabecalho": "QUINTA-FEIRA • DIA",
-      "pagina_inicio": 10,
+      "pagina_inicio": 11,
       "secoes": {
         "abertura": [
           {
@@ -212,7 +212,11 @@
             "comunidade": false
           },
           {
-            "texto": "pois não há outro que lute por nós, senão somente tu, ó Deus.",
+            "texto": "pois não há outro que lute por nós,",
+            "comunidade": true
+          },
+          {
+            "texto": "senão somente tu, ó Deus.",
             "comunidade": true
           },
           {
@@ -278,7 +282,7 @@
         "leitura": {
           "titulo": "LEITURA",
           "notas": [
-            "tabelas de leitura, Ano I p. 30"
+            "tabelas de leitura, Ano I p. 31"
           ]
         },
         "silencio_reflexao": {
@@ -290,7 +294,7 @@
         "salmo": {
           "titulo": "SALMO",
           "notas": [
-            "tabelas de leitura, Ano I p. 30"
+            "tabelas de leitura, Ano I p. 31"
           ]
         },
         "gloria": {
@@ -308,7 +312,7 @@
         "benedictus": {
           "titulo": "BENEDICTUS",
           "notas": [
-            "texto na seção final, p. 48"
+            "texto na seção final, p. 49"
           ]
         },
         "oracao_do_senhor": {
@@ -335,7 +339,7 @@
       "dia_semana": "sexta",
       "genero": "Evangelhos",
       "titulo_cabecalho": "SEXTA-FEIRA • DIA",
-      "pagina_inicio": 13,
+      "pagina_inicio": 14,
       "secoes": {
         "abertura": [
           {
@@ -546,7 +550,11 @@
             "comunidade": false
           },
           {
-            "texto": "pois não há outro que lute por nós, senão somente tu, ó Deus.",
+            "texto": "pois não há outro que lute por nós,",
+            "comunidade": true
+          },
+          {
+            "texto": "senão somente tu, ó Deus.",
             "comunidade": true
           },
           {
@@ -612,7 +620,7 @@
         "leitura": {
           "titulo": "LEITURA",
           "notas": [
-            "tabelas de leitura, Ano I p. 30"
+            "tabelas de leitura, Ano I p. 31"
           ]
         },
         "silencio_reflexao": {
@@ -624,7 +632,7 @@
         "salmo": {
           "titulo": "SALMO",
           "notas": [
-            "tabelas de leitura, Ano I p. 30"
+            "tabelas de leitura, Ano I p. 31"
           ]
         },
         "gloria": {
@@ -642,7 +650,7 @@
         "benedictus": {
           "titulo": "BENEDICTUS",
           "notas": [
-            "texto na seção final, p. 48"
+            "texto na seção final, p. 49"
           ]
         },
         "oracao_do_senhor": {
@@ -669,7 +677,7 @@
       "dia_semana": "sabado",
       "genero": "História de Israel",
       "titulo_cabecalho": "SÁBADO • DIA",
-      "pagina_inicio": 16,
+      "pagina_inicio": 17,
       "secoes": {
         "abertura": [
           {
@@ -864,7 +872,11 @@
             "comunidade": false
           },
           {
-            "texto": "pois não há outro que lute por nós, senão somente tu, ó Deus.",
+            "texto": "pois não há outro que lute por nós,",
+            "comunidade": true
+          },
+          {
+            "texto": "senão somente tu, ó Deus.",
             "comunidade": true
           },
           {
@@ -930,7 +942,7 @@
         "leitura": {
           "titulo": "LEITURA",
           "notas": [
-            "tabelas de leitura, Ano I p. 30"
+            "tabelas de leitura, Ano I p. 31"
           ]
         },
         "silencio_reflexao": {
@@ -942,7 +954,7 @@
         "salmo": {
           "titulo": "SALMO",
           "notas": [
-            "tabelas de leitura, Ano I p. 30"
+            "tabelas de leitura, Ano I p. 31"
           ]
         },
         "gloria": {
@@ -960,7 +972,7 @@
         "benedictus": {
           "titulo": "BENEDICTUS",
           "notas": [
-            "texto na seção final, p. 48"
+            "texto na seção final, p. 49"
           ]
         },
         "oracao_do_senhor": {
@@ -987,7 +999,7 @@
       "dia_semana": "domingo",
       "genero": "Lecionário",
       "titulo_cabecalho": "DOMINGO • DIA",
-      "pagina_inicio": 19,
+      "pagina_inicio": 20,
       "secoes": {
         "abertura": [
           {
@@ -1182,7 +1194,11 @@
             "comunidade": false
           },
           {
-            "texto": "pois não há outro que lute por nós, senão somente tu, ó Deus.",
+            "texto": "pois não há outro que lute por nós,",
+            "comunidade": true
+          },
+          {
+            "texto": "senão somente tu, ó Deus.",
             "comunidade": true
           },
           {
@@ -1248,7 +1264,7 @@
         "leitura": {
           "titulo": "LEITURA",
           "notas": [
-            "tabelas de leitura, Ano I p. 30"
+            "tabelas de leitura, Ano I p. 31"
           ]
         },
         "silencio_reflexao": {
@@ -1260,7 +1276,7 @@
         "salmo": {
           "titulo": "SALMO",
           "notas": [
-            "tabelas de leitura, Ano I p. 30"
+            "tabelas de leitura, Ano I p. 31"
           ]
         },
         "gloria": {
@@ -1278,7 +1294,7 @@
         "benedictus": {
           "titulo": "BENEDICTUS",
           "notas": [
-            "texto na seção final, p. 48"
+            "texto na seção final, p. 49"
           ]
         },
         "oracao_do_senhor": {
@@ -1305,7 +1321,7 @@
       "dia_semana": "segunda",
       "genero": "Atos e Epístolas",
       "titulo_cabecalho": "SEGUNDA-FEIRA • DIA",
-      "pagina_inicio": 22,
+      "pagina_inicio": 23,
       "secoes": {
         "abertura": [
           {
@@ -1508,7 +1524,11 @@
             "comunidade": false
           },
           {
-            "texto": "pois não há outro que lute por nós, senão somente tu, ó Deus.",
+            "texto": "pois não há outro que lute por nós,",
+            "comunidade": true
+          },
+          {
+            "texto": "senão somente tu, ó Deus.",
             "comunidade": true
           },
           {
@@ -1574,7 +1594,7 @@
         "leitura": {
           "titulo": "LEITURA",
           "notas": [
-            "tabelas de leitura, Ano I p. 30"
+            "tabelas de leitura, Ano I p. 31"
           ]
         },
         "silencio_reflexao": {
@@ -1586,7 +1606,7 @@
         "salmo": {
           "titulo": "SALMO",
           "notas": [
-            "tabelas de leitura, Ano I p. 30"
+            "tabelas de leitura, Ano I p. 31"
           ]
         },
         "gloria": {
@@ -1604,7 +1624,7 @@
         "benedictus": {
           "titulo": "BENEDICTUS",
           "notas": [
-            "texto na seção final, p. 48"
+            "texto na seção final, p. 49"
           ]
         },
         "oracao_do_senhor": {
@@ -1631,7 +1651,7 @@
       "dia_semana": "terca",
       "genero": "Os Profetas",
       "titulo_cabecalho": "TERÇA-FEIRA • DIA",
-      "pagina_inicio": 25,
+      "pagina_inicio": 26,
       "secoes": {
         "abertura": [
           {
@@ -1834,7 +1854,11 @@
             "comunidade": false
           },
           {
-            "texto": "pois não há outro que lute por nós, senão somente tu, ó Deus.",
+            "texto": "pois não há outro que lute por nós,",
+            "comunidade": true
+          },
+          {
+            "texto": "senão somente tu, ó Deus.",
             "comunidade": true
           },
           {
@@ -1900,7 +1924,7 @@
         "leitura": {
           "titulo": "LEITURA",
           "notas": [
-            "tabelas de leitura, Ano I p. 30"
+            "tabelas de leitura, Ano I p. 31"
           ]
         },
         "silencio_reflexao": {
@@ -1912,7 +1936,7 @@
         "salmo": {
           "titulo": "SALMO",
           "notas": [
-            "tabelas de leitura, Ano I p. 30"
+            "tabelas de leitura, Ano I p. 31"
           ]
         },
         "gloria": {
@@ -1930,7 +1954,7 @@
         "benedictus": {
           "titulo": "BENEDICTUS",
           "notas": [
-            "texto na seção final, p. 48"
+            "texto na seção final, p. 49"
           ]
         },
         "oracao_do_senhor": {
@@ -1957,7 +1981,7 @@
       "dia_semana": "quarta",
       "genero": "Literatura Sapiencial",
       "titulo_cabecalho": "QUARTA-FEIRA • DIA",
-      "pagina_inicio": 28,
+      "pagina_inicio": 29,
       "secoes": {
         "abertura": [
           {
@@ -2152,7 +2176,11 @@
             "comunidade": false
           },
           {
-            "texto": "pois não há outro que lute por nós, senão somente tu, ó Deus.",
+            "texto": "pois não há outro que lute por nós,",
+            "comunidade": true
+          },
+          {
+            "texto": "senão somente tu, ó Deus.",
             "comunidade": true
           },
           {
@@ -2218,7 +2246,7 @@
         "leitura": {
           "titulo": "LEITURA",
           "notas": [
-            "tabelas de leitura, Ano I p. 30"
+            "tabelas de leitura, Ano I p. 31"
           ]
         },
         "silencio_reflexao": {
@@ -2230,7 +2258,7 @@
         "salmo": {
           "titulo": "SALMO",
           "notas": [
-            "tabelas de leitura, Ano I p. 30"
+            "tabelas de leitura, Ano I p. 31"
           ]
         },
         "gloria": {
@@ -2248,7 +2276,7 @@
         "benedictus": {
           "titulo": "BENEDICTUS",
           "notas": [
-            "texto na seção final, p. 48"
+            "texto na seção final, p. 49"
           ]
         },
         "oracao_do_senhor": {
@@ -2273,7 +2301,7 @@
     }
   },
   "benedictus": {
-    "pagina": 49,
+    "pagina": 50,
     "introducao": "O Benedictus é o cântico do Evangelho do ofício do dia.",
     "linhas": [
       {
