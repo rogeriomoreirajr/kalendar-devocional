@@ -513,13 +513,12 @@ button.botao-icone {
 /* ---------- Livro ---------- */
 
 .livro {
-  max-width: 1160px;
+  max-width: 780px;
   margin: 0 auto;
   padding: 30px 20px 56px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 24px;
-  align-items: flex-start;
 }
 
 .pagina {
@@ -527,8 +526,8 @@ button.botao-icone {
   padding: 0;
 }
 
-.pagina--oficio { flex: 1 1 520px; }
-.pagina--semana { flex: 1 1 400px; border-top: 1px solid var(--line); padding-top: 24px; }
+
+.pagina--semana { border-top: 1px solid var(--line); padding-top: 24px; }
 
 @media (min-width: 640px) {
   .livro { padding: 36px 24px 64px; }
@@ -540,10 +539,6 @@ button.botao-icone {
   }
 
   .pagina--semana { padding: 36px 40px 32px; border-top: 1px solid var(--line); }
-}
-
-@media (min-width: 1000px) {
-  .pagina--semana { position: sticky; top: 16px; max-width: 460px; }
 }
 
 /* ---------- Seções do ofício ---------- */
@@ -745,7 +740,7 @@ button.botao-icone {
   color: var(--secondary);
 }
 
-/* ---------- Lecionário da semana (recolhido no celular) ---------- */
+/* ---------- Lecionário da semana (abaixo do ofício, recolhido; abre ao tocar) ---------- */
 
 .semana__cabecalho {
   display: flex;
@@ -789,13 +784,6 @@ button.botao-icone {
 }
 
 .semana-det[open] .semana__seta { transform: rotate(-135deg); margin-top: 4px; }
-
-/* No desktop o lecionário da semana fica sempre aberto */
-@media (min-width: 1000px) {
-  .semana__cabecalho { pointer-events: none; cursor: default; }
-  .semana__seta { display: none; }
-  .semana__lado { gap: 14px; }
-}
 
 .semana__sub {
   margin: 0 0 28px;
