@@ -93,7 +93,7 @@ ESTACAO_CSS = {
     "pascoa": "pascoa",
     "tempo da trindade": "tempo-comum",
     # Edição corrigida do Kalendar: Epifania vai até 9/2, e o tempo depois da Páscoa muda de nome
-    "pentecostes": "pentecostes",
+    "pentecostes": "tempo-comum",
     "tempo do reino": "tempo-comum",
 }
 
